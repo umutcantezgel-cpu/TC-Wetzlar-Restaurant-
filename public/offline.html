@@ -98,8 +98,13 @@
         Sie sind derzeit offline. Bitte überprüfen Sie Ihre
         Internetverbindung und versuchen Sie es erneut.
       </p>
-      <button onclick="window.location.reload()">Seite neu laden</button>
+      <button id="reload-btn">Seite neu laden</button>
     </main>
   </div>
+  <script>
+    document.getElementById('reload-btn').addEventListener('click', function() {
+      window.location.reload();
+    });
+  </script>
 </body>
 </html>

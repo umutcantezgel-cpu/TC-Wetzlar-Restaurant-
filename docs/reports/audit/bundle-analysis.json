@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-11-12T19:53:22.060Z",
+  "budgets": {
+    "js": 35840,
+    "css": 46080
+  },
+  "bundles": {
+    "js": [
+      {
+        "file": "dist/assets/js/Button.B6Ru7F9f.js",
+        "raw": 4560,
+        "gzip": 1697
+      },
+      {
+        "file": "dist/assets/js/astro/server.Dt9To2Qw.js",
+        "raw": 61461,
+        "gzip": 16170
+      },
+      {
+        "file": "dist/assets/js/astro.B05XWx6v.js",
+        "raw": 75,
+        "gzip": 80
+      }
+    ],
+    "css": [
+      {
+        "file": "dist/assets/css/style.D1N0Jfnr.css",
+        "raw": 29661,
+        "gzip": 6278
+      }
+    ]
+  },
+  "summary": {
+    "js": {
+      "total": 66096,
+      "gzip": 17947,
+      "count": 3,
+      "exceeded": false
+    },
+    "css": {
+      "total": 29661,
+      "gzip": 6278,
+      "count": 1,
+      "exceeded": false
+    }
+  }
+}

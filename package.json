@@ -19,7 +19,13 @@
     "links": "node scripts/link-check.js",
     "security": "node scripts/security-check.js",
     "reports": "node scripts/generate-reports.js",
-    "test:all": "npm run typecheck && npm run lint && npm run build && npm run sri:verify && npm run a11y && npm run lhci && npm run security",
+    "audit:all": "node scripts/audit/run-all.js",
+    "audit:bundle": "node scripts/audit/bundle-analyzer.js",
+    "audit:inline": "node scripts/audit/inline-scanner.js",
+    "audit:assets": "echo 'Asset profiling placeholder'",
+    "audit:security": "npm run security",
+    "test:all": "npm run typecheck && npm run lint && npm run build && npm run sri:verify && npm run audit:inline && npm run audit:bundle",
+    "test:ci": "npm run test:all && npm run a11y && npm run lhci && npm run links",
     "postbuild": "npm run sri:gen"
   },
   "dependencies": {
