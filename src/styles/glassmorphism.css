@@ -1,0 +1,227 @@
+/**
+ * Glassmorphism Utility Classes
+ * Modern glass-morphism effects with backdrop-filter
+ *
+ * Browser support: 95%+ (Chrome 76+, Safari 14+, Firefox 103+)
+ * Graceful degradation: Falls back to solid backgrounds
+ */
+
+/* ============================================
+   BASE GLASS EFFECTS
+   ============================================ */
+
+/**
+ * Light glass effect
+ * Usage: For cards, modals, navigation on light backgrounds
+ */
+.glass {
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur); /* Safari support */
+  box-shadow: var(--glass-shadow);
+}
+
+/**
+ * Subtle light glass effect
+ * Usage: For overlays, hover states, subtle depth
+ */
+.glass-subtle {
+  background: var(--glass-bg-light-subtle);
+  border: 1px solid var(--glass-border-light);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  box-shadow: var(--glass-shadow);
+}
+
+/**
+ * Dark glass effect
+ * Usage: For footers, dark sections, night mode
+ */
+.glass-dark {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow-lg);
+}
+
+/**
+ * Gold-tinted glass effect
+ * Usage: For premium sections, featured content
+ */
+.glass-gold {
+  background: var(--glass-bg-gold);
+  border: 1px solid var(--glass-border-light);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ============================================
+   BLUR VARIANTS
+   ============================================ */
+
+.glass-blur-sm {
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+}
+
+.glass-blur-lg {
+  backdrop-filter: var(--glass-blur-lg);
+  -webkit-backdrop-filter: var(--glass-blur-lg);
+}
+
+/* ============================================
+   GLASS CARD
+   Combines glass effect with card styling
+   ============================================ */
+
+.glass-card {
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  transition: all var(--transition-normal);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glass-shadow-lg);
+}
+
+/* ============================================
+   GLASS HEADER
+   For sticky/fixed navigation with scroll effect
+   ============================================ */
+
+.glass-header {
+  background: var(--glass-bg-light);
+  border-bottom: 1px solid var(--glass-border-light);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--header-shadow);
+  transition: all var(--transition-normal);
+}
+
+.glass-header.scrolled {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ============================================
+   GLASS OVERLAY
+   For modals, dropdowns, overlays
+   ============================================ */
+
+.glass-overlay {
+  background: var(--glass-bg-dark-subtle);
+  backdrop-filter: var(--glass-blur-lg);
+  -webkit-backdrop-filter: var(--glass-blur-lg);
+}
+
+/* ============================================
+   GRADIENT BACKGROUNDS
+   Modern gradient combinations
+   ============================================ */
+
+.bg-gradient-brand {
+  background: var(--gradient-brand);
+}
+
+.bg-gradient-warm {
+  background: var(--gradient-brand-warm);
+}
+
+.bg-gradient-dark {
+  background: var(--gradient-background);
+}
+
+.bg-gradient-mesh {
+  background: var(--gradient-mesh);
+}
+
+/* ============================================
+   GRADIENT OVERLAYS
+   For Hero sections, image overlays
+   ============================================ */
+
+.overlay-gradient {
+  position: relative;
+  isolation: isolate;
+}
+
+.overlay-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-overlay);
+  z-index: -1;
+}
+
+.overlay-gradient-gold {
+  position: relative;
+  isolation: isolate;
+}
+
+.overlay-gradient-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-overlay-gold);
+  z-index: -1;
+}
+
+/* ============================================
+   GRACEFUL DEGRADATION
+   Fallback for browsers without backdrop-filter support
+   ============================================ */
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass,
+  .glass-card,
+  .glass-header {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .glass-dark,
+  .glass-overlay {
+    background: rgba(17, 24, 39, 0.95);
+  }
+
+  .glass-gold {
+    background: rgba(201, 161, 54, 0.2);
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   Disable transitions for users who prefer reduced motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-card,
+  .glass-header {
+    transition: none;
+  }
+
+  .glass-card:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   Ensure sufficient contrast for glass effects
+   ============================================ */
+
+.glass-text-contrast {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.glass-dark .glass-text-contrast {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}

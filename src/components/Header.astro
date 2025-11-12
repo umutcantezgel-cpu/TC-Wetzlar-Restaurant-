@@ -94,6 +94,22 @@ const isActive = (href: string) => {
   .header--transparent {
     background-color: transparent;
     border-bottom-color: transparent;
+    box-shadow: none;
+  }
+
+  /* Scrolled state with glassmorphism */
+  .header--sticky.header--scrolled {
+    background: var(--glass-bg-light);
+    border-bottom: 1px solid var(--glass-border-light);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .header--transparent.header--scrolled {
+    background: var(--glass-bg-light);
+    border-bottom-color: var(--glass-border-light);
+    box-shadow: var(--glass-shadow);
   }
 
   .header__container {
@@ -254,3 +270,4 @@ const isActive = (href: string) => {
 </style>
 
 <script src="../scripts/mobile-menu.ts"></script>
+<script src="../scripts/header-scroll.ts"></script>

@@ -1,9 +1,9 @@
 {
-  "generated": "2025-11-12T19:56:44.560Z",
+  "generated": "2025-11-12T22:14:28.805Z",
   "algorithm": "sha384",
   "files": {
-    "dist/assets/css/style.D1N0Jfnr.css": {
-      "integrity": "sha384-qNl9lBoGkb6NcWskdHt/QQG/sAj9zCkbmZ5JRogOS6u89QSBtKtI7uaLBSrQP2XV",
+    "dist/assets/css/style.CUkv8BSc.css": {
+      "integrity": "sha384-ZNws7P3V+Fcr7i0eM/cYCAqbwdqvzXWwHmmEYYY+Gkc4w+k4XWFkjtEtYsoqnUd9",
       "type": "css"
     },
     "dist/assets/js/Button.B6Ru7F9f.js": {

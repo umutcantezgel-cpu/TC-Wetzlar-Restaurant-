@@ -100,11 +100,7 @@ const {
   .hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.3),
-      rgba(0, 0, 0, 0.5)
-    );
+    background: var(--gradient-overlay-gold);
   }
 
   .hero__content {
@@ -117,20 +113,29 @@ const {
 
   .hero__text {
     max-width: 800px;
+    background: var(--glass-bg-light);
+    border: 1px solid var(--glass-border-light);
+    border-radius: var(--primitive-radius-2xl);
+    padding: var(--spacing-xl);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow-lg);
   }
 
   .hero__heading {
-    color: var(--color-text-inverse);
+    font-family: var(--font-family-display);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-text-primary);
     margin-bottom: var(--spacing-md);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.5);
+    letter-spacing: -0.02em;
   }
 
   .hero__subheading {
     font-size: var(--primitive-font-size-xl);
     line-height: var(--primitive-line-height-relaxed);
-    color: var(--color-text-inverse);
+    color: var(--color-text-secondary);
     margin-bottom: var(--spacing-xl);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
   .hero__actions {
@@ -141,12 +146,14 @@ const {
 
   /* No image variant */
   .hero:not(:has(.hero__image-wrapper)) {
-    background-color: var(--color-surface);
+    background: var(--gradient-mesh), var(--color-surface);
   }
 
-  .hero:not(:has(.hero__image-wrapper)) .hero__heading,
-  .hero:not(:has(.hero__image-wrapper)) .hero__subheading {
-    color: var(--color-text-primary);
+  .hero:not(:has(.hero__image-wrapper)) .hero__text {
+    background: var(--glass-bg-light-subtle);
+  }
+
+  .hero:not(:has(.hero__image-wrapper)) .hero__heading {
     text-shadow: none;
   }
 
