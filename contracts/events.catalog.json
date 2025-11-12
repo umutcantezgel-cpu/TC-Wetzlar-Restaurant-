@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "events": [
+    {
+      "id": "user.consent.updated",
+      "type": "com.tcwetzlar.consent.updated",
+      "description": "Fired when user consent preferences are updated",
+      "specversion": "1.0",
+      "source": "/consent-manager",
+      "datacontenttype": "application/json",
+      "dataschema": {
+        "type": "object",
+        "properties": {
+          "timestamp": { "type": "string", "format": "date-time" },
+          "categories": {
+            "type": "object",
+            "properties": {
+              "necessary": { "type": "boolean" },
+              "functional": { "type": "boolean" },
+              "analytics": { "type": "boolean" },
+              "marketing": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "form.submission.success",
+      "type": "com.tcwetzlar.form.submitted",
+      "description": "Fired when a form is successfully submitted",
+      "specversion": "1.0",
+      "source": "/form-handler",
+      "datacontenttype": "application/json",
+      "dataschema": {
+        "type": "object",
+        "properties": {
+          "formId": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "success": { "type": "boolean" }
+        }
+      }
+    },
+    {
+      "id": "navigation.interaction",
+      "type": "com.tcwetzlar.navigation.clicked",
+      "description": "Fired when navigation elements are interacted with",
+      "specversion": "1.0",
+      "source": "/navigation",
+      "datacontenttype": "application/json",
+      "dataschema": {
+        "type": "object",
+        "properties": {
+          "target": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    {
+      "id": "embed.activated",
+      "type": "com.tcwetzlar.embed.activated",
+      "description": "Fired when a two-click embed is activated",
+      "specversion": "1.0",
+      "source": "/two-click-embed",
+      "datacontenttype": "application/json",
+      "dataschema": {
+        "type": "object",
+        "properties": {
+          "embedType": { "type": "string", "enum": ["map", "video"] },
+          "embedId": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    {
+      "id": "reservation.submitted",
+      "type": "com.tcwetzlar.reservation.submitted",
+      "description": "Fired when a reservation form is submitted",
+      "specversion": "1.0",
+      "source": "/reservation-form",
+      "datacontenttype": "application/json",
+      "dataschema": {
+        "type": "object",
+        "properties": {
+          "reservationId": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "guestCount": { "type": "number" },
+          "date": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    {
+      "id": "error.occurred",
+      "type": "com.tcwetzlar.error.occurred",
+      "description": "Fired when an application error occurs",
+      "specversion": "1.0",
+      "source": "/error-handler",
+      "datacontenttype": "application/json",
+      "dataschema": {
+        "type": "object",
+        "properties": {
+          "errorType": { "type": "string" },
+          "message": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] }
+        }
+      }
+    }
+  ]
+}

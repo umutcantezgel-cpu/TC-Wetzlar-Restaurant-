@@ -1,0 +1,201 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "tc-wetzlar-restaurant-manifest",
+  "version": "1.0.0",
+  "metadata": {
+    "name": "TC Wetzlar Restaurant",
+    "description": "Gehobene Gastronomie im Herzen von Wetzlar",
+    "shortName": "TC Wetzlar",
+    "themeColor": "#d4af37",
+    "backgroundColor": "#ffffff",
+    "lang": "de-DE",
+    "dir": "ltr",
+    "locale": "de_DE",
+    "type": "website",
+    "category": "restaurant"
+  },
+  "business": {
+    "name": "TC Wetzlar Restaurant",
+    "legalName": "TC Wetzlar Restaurant GmbH",
+    "type": "Restaurant",
+    "cuisine": ["International", "Mediterran", "Deutsche Küche"],
+    "priceRange": "€€€",
+    "address": {
+      "streetAddress": "Musterstraße 123",
+      "addressLocality": "Wetzlar",
+      "addressRegion": "Hessen",
+      "postalCode": "35576",
+      "addressCountry": "DE"
+    },
+    "contact": {
+      "telephone": "+49-6441-123456",
+      "email": "info@tc-wetzlar-restaurant.de",
+      "url": "https://tc-wetzlar-restaurant.de"
+    },
+    "openingHours": [
+      {
+        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "17:30",
+        "closes": "23:00"
+      },
+      {
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "12:00",
+        "closes": "23:00"
+      }
+    ],
+    "servesCuisine": ["International", "Mediterran", "Deutsche Küche"],
+    "acceptsReservations": true
+  },
+  "performance": {
+    "budgets": {
+      "javascript": {
+        "maxSize": 51200,
+        "unit": "bytes",
+        "per": "page"
+      },
+      "css": {
+        "maxSize": 30720,
+        "unit": "bytes",
+        "per": "page"
+      },
+      "fonts": {
+        "maxSize": 102400,
+        "unit": "bytes",
+        "total": true
+      },
+      "images": {
+        "maxSize": 512000,
+        "unit": "bytes",
+        "per": "page"
+      }
+    },
+    "coreWebVitals": {
+      "LCP": {
+        "target": 2.5,
+        "unit": "seconds",
+        "percentile": 75
+      },
+      "INP": {
+        "target": 200,
+        "unit": "milliseconds",
+        "percentile": 75
+      },
+      "CLS": {
+        "target": 0.1,
+        "unit": "score",
+        "percentile": 75
+      }
+    },
+    "lighthouse": {
+      "performance": 95,
+      "accessibility": 100,
+      "bestPractices": 95,
+      "seo": 95
+    }
+  },
+  "security": {
+    "csp": {
+      "mode": "strict",
+      "allowInline": false,
+      "directives": {
+        "default-src": ["'self'"],
+        "script-src": ["'self'"],
+        "style-src": ["'self'"],
+        "img-src": ["'self'", "data:"],
+        "font-src": ["'self'"],
+        "connect-src": ["'self'"],
+        "frame-src": ["'none'"],
+        "object-src": ["'none'"],
+        "base-uri": ["'self'"],
+        "form-action": ["'self'"],
+        "frame-ancestors": ["'none'"],
+        "upgrade-insecure-requests": true,
+        "block-all-mixed-content": true
+      },
+      "requireTrustedTypes": true,
+      "reportUri": "/api/csp-report"
+    },
+    "headers": {
+      "HSTS": {
+        "maxAge": 31536000,
+        "includeSubDomains": true,
+        "preload": true
+      },
+      "XFrameOptions": "DENY",
+      "XContentTypeOptions": "nosniff",
+      "ReferrerPolicy": "strict-origin-when-cross-origin",
+      "PermissionsPolicy": {
+        "geolocation": [],
+        "microphone": [],
+        "camera": [],
+        "payment": ["self"],
+        "usb": [],
+        "magnetometer": [],
+        "gyroscope": [],
+        "accelerometer": []
+      },
+      "COOP": "same-origin",
+      "COEP": "require-corp",
+      "CORP": "same-origin"
+    },
+    "sri": {
+      "enabled": true,
+      "algorithm": "sha384",
+      "coverage": 100
+    }
+  },
+  "consent": {
+    "mode": "opt-in",
+    "categories": {
+      "necessary": {
+        "required": true,
+        "description": "Technisch notwendige Cookies für Basisfunktionen"
+      },
+      "functional": {
+        "required": false,
+        "description": "Funktionale Cookies für erweiterte Features"
+      },
+      "analytics": {
+        "required": false,
+        "description": "Analyse-Cookies zur Verbesserung der Website"
+      },
+      "marketing": {
+        "required": false,
+        "description": "Marketing-Cookies für personalisierte Werbung"
+      }
+    },
+    "twoClickEmbeds": {
+      "maps": true,
+      "videos": true,
+      "socialMedia": true
+    },
+    "storage": "localStorage",
+    "expiryDays": 365
+  },
+  "accessibility": {
+    "wcag": "2.2",
+    "level": "AA",
+    "features": {
+      "skipLinks": true,
+      "focusVisible": true,
+      "reducedMotion": true,
+      "highContrast": false,
+      "landmarks": true,
+      "ariaLabels": true
+    }
+  },
+  "i18n": {
+    "defaultLocale": "de-DE",
+    "locales": ["de-DE"],
+    "strategy": "prefix-except-default",
+    "fallbackLocale": "de-DE"
+  },
+  "features": {
+    "serviceWorker": false,
+    "offlineMode": true,
+    "installable": false,
+    "notifications": false,
+    "backgroundSync": false
+  }
+}

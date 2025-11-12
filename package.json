@@ -1,0 +1,49 @@
+{
+  "name": "tc-wetzlar-restaurant",
+  "version": "1.0.0",
+  "description": "Premium Enterprise Static Website for TC Wetzlar Restaurant",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "format": "prettier --write .",
+    "lint": "eslint --ext .js,.ts,.astro src",
+    "typecheck": "tsc --noEmit",
+    "sri:gen": "node scripts/gen-sri.js",
+    "sri:verify": "node scripts/verify-sri.js",
+    "a11y": "node scripts/a11y-check.js",
+    "lhci": "lhci autorun",
+    "links": "node scripts/link-check.js",
+    "security": "node scripts/security-check.js",
+    "reports": "node scripts/generate-reports.js",
+    "test:all": "npm run typecheck && npm run lint && npm run build && npm run sri:verify && npm run a11y && npm run lhci && npm run security",
+    "postbuild": "npm run sri:gen"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "tailwindcss": "^3.4.14",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.9",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "@lhci/cli": "^0.14.0",
+    "axe-core": "^4.10.0",
+    "eslint": "^9.13.0",
+    "eslint-plugin-astro": "^1.2.4",
+    "pa11y": "^8.0.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.6.3",
+    "playwright": "^1.48.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

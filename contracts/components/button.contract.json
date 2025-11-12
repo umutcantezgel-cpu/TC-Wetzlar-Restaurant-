@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "component": "Button",
+  "version": "1.0.0",
+  "description": "Accessible button component with multiple variants",
+  "props": {
+    "variant": {
+      "type": "string",
+      "enum": ["primary", "secondary", "tertiary", "ghost"],
+      "default": "primary",
+      "description": "Visual variant of the button"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["sm", "md", "lg"],
+      "default": "md",
+      "description": "Size of the button"
+    },
+    "href": {
+      "type": "string",
+      "optional": true,
+      "description": "If provided, renders as link"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether button is disabled"
+    },
+    "ariaLabel": {
+      "type": "string",
+      "optional": true,
+      "description": "Accessible label for screen readers"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["button", "submit", "reset"],
+      "default": "button",
+      "description": "Button type attribute"
+    }
+  },
+  "accessibility": {
+    "role": "button",
+    "requirements": [
+      "Must have visible focus indicator",
+      "Must support keyboard navigation",
+      "Must have min touch target of 24x24px",
+      "Must provide aria-label if icon-only",
+      "Must respect prefers-reduced-motion"
+    ],
+    "keyboardSupport": {
+      "Enter": "Activate button",
+      "Space": "Activate button"
+    },
+    "ariaAttributes": {
+      "aria-disabled": "When disabled prop is true",
+      "aria-label": "When ariaLabel prop is provided"
+    }
+  },
+  "performance": {
+    "budget": {
+      "css": 512,
+      "js": 0
+    },
+    "critical": false,
+    "lazy": false
+  },
+  "consent": {
+    "required": false,
+    "category": null
+  },
+  "tokens": {
+    "variant-primary-bg": "brand.primary",
+    "variant-primary-text": "ui.text.inverse",
+    "variant-secondary-bg": "brand.secondary",
+    "variant-secondary-text": "ui.text.inverse",
+    "focus-ring": "focus",
+    "transition": "normal"
+  }
+}

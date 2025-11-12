@@ -1,0 +1,167 @@
+---
+/**
+ * Hero Component
+ * WCAG 2.2 AA Compliant
+ */
+import Button from './Button.astro';
+
+export interface Props {
+  heading: string;
+  subheading?: string;
+  image?: string;
+  imageAlt?: string;
+  ctaPrimary?: {
+    text: string;
+    href: string;
+  };
+  ctaSecondary?: {
+    text: string;
+    href: string;
+  };
+  variant?: 'full' | 'half';
+}
+
+const {
+  heading,
+  subheading,
+  image,
+  imageAlt = '',
+  ctaPrimary,
+  ctaSecondary,
+  variant = 'full',
+} = Astro.props;
+---
+
+<section class:list={['hero', `hero--${variant}`]} aria-label="Hero">
+  {image && (
+    <div class="hero__image-wrapper">
+      <img
+        src={image}
+        alt={imageAlt}
+        class="hero__image"
+        loading="eager"
+        fetchpriority="high"
+        width="1920"
+        height="1080"
+      />
+      <div class="hero__overlay" aria-hidden="true"></div>
+    </div>
+  )}
+
+  <div class="hero__content container">
+    <div class="hero__text">
+      <h1 class="hero__heading">{heading}</h1>
+      {subheading && <p class="hero__subheading">{subheading}</p>}
+
+      {(ctaPrimary || ctaSecondary) && (
+        <div class="hero__actions">
+          {ctaPrimary && (
+            <Button href={ctaPrimary.href} variant="primary" size="lg">
+              {ctaPrimary.text}
+            </Button>
+          )}
+          {ctaSecondary && (
+            <Button href={ctaSecondary.href} variant="tertiary" size="lg">
+              {ctaSecondary.text}
+            </Button>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 60vh;
+    overflow: hidden;
+  }
+
+  .hero--full {
+    min-height: 80vh;
+  }
+
+  .hero__image-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.5)
+    );
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-top: var(--spacing-3xl);
+    padding-bottom: var(--spacing-3xl);
+  }
+
+  .hero__text {
+    max-width: 800px;
+  }
+
+  .hero__heading {
+    color: var(--color-text-inverse);
+    margin-bottom: var(--spacing-md);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero__subheading {
+    font-size: var(--primitive-font-size-xl);
+    line-height: var(--primitive-line-height-relaxed);
+    color: var(--color-text-inverse);
+    margin-bottom: var(--spacing-xl);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  /* No image variant */
+  .hero:not(:has(.hero__image-wrapper)) {
+    background-color: var(--color-surface);
+  }
+
+  .hero:not(:has(.hero__image-wrapper)) .hero__heading,
+  .hero:not(:has(.hero__image-wrapper)) .hero__subheading {
+    color: var(--color-text-primary);
+    text-shadow: none;
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      min-height: 50vh;
+    }
+
+    .hero--full {
+      min-height: 60vh;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

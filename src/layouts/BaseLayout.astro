@@ -1,0 +1,94 @@
+---
+/**
+ * BaseLayout - Main layout wrapper
+ * WCAG 2.2 AA Compliant
+ * Security: CSP-strict, no inline scripts/styles
+ */
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  robots?: string;
+  structuredData?: object;
+  lang?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = '/assets/img/og-default.jpg',
+  ogType = 'website',
+  robots = 'index, follow',
+  structuredData,
+  lang = 'de-DE',
+} = Astro.props;
+
+const siteUrl = 'https://tc-wetzlar-restaurant.de';
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="TC Wetzlar Restaurant" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonical} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullOgImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#d4af37" />
+
+    <!-- Structured Data -->
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+
+    <!-- Preconnect for performance -->
+    <link rel="dns-prefetch" href={siteUrl} />
+    <link rel="preconnect" href={siteUrl} crossorigin />
+  </head>
+  <body>
+    <!-- Skip Links for A11y -->
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#main-navigation" class="skip-link">Zur Navigation springen</a>
+
+    <!-- Main Content -->
+    <slot />
+
+    <!-- Consent Banner (will be loaded separately) -->
+    <div id="consent-banner-root"></div>
+  </body>
+</html>

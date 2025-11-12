@@ -1,0 +1,223 @@
+---
+/**
+ * Homepage - TC Wetzlar Restaurant
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Button from '../components/Button.astro';
+
+// SEO Data from contract
+const seoData = {
+  title: 'TC Wetzlar Restaurant – Gehobene Gastronomie im Herzen von Wetzlar',
+  description:
+    'Erleben Sie kulinarische Exzellenz im TC Wetzlar Restaurant. Internationale und mediterrane Küche in elegantem Ambiente. Jetzt Tisch reservieren!',
+  canonical: 'https://tc-wetzlar-restaurant.de/',
+  ogImage: '/assets/img/og-home.jpg',
+};
+
+// Structured Data
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: 'TC Wetzlar Restaurant',
+  image: 'https://tc-wetzlar-restaurant.de/assets/img/restaurant-exterior.jpg',
+  description: 'Gehobene Gastronomie im Herzen von Wetzlar mit internationaler und mediterraner Küche',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Musterstraße 123',
+    addressLocality: 'Wetzlar',
+    addressRegion: 'Hessen',
+    postalCode: '35576',
+    addressCountry: 'DE',
+  },
+  telephone: '+49-6441-123456',
+  email: 'info@tc-wetzlar-restaurant.de',
+  url: 'https://tc-wetzlar-restaurant.de',
+  servesCuisine: ['International', 'Mediterran', 'Deutsche Küche'],
+  priceRange: '€€€',
+  acceptsReservations: 'True',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '17:30',
+      closes: '23:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday', 'Sunday'],
+      opens: '12:00',
+      closes: '23:00',
+    },
+  ],
+};
+
+const features = [
+  {
+    title: 'Erlesene Küche',
+    description: 'Internationale und mediterrane Spezialitäten, zubereitet mit frischen, regionalen Zutaten.',
+  },
+  {
+    title: 'Edle Getränke',
+    description: 'Ausgewählte Weine aus renommierten Anbaugebieten und erstklassige Spirituosen.',
+  },
+  {
+    title: 'Elegantes Ambiente',
+    description: 'Stilvolle Räumlichkeiten für romantische Abende, Geschäftsessen und besondere Anlässe.',
+  },
+];
+---
+
+<BaseLayout {...seoData} structuredData={structuredData}>
+  <Header />
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <Hero
+      heading="Willkommen im TC Wetzlar Restaurant"
+      subheading="Kulinarische Exzellenz im Herzen von Wetzlar"
+      image="/assets/img/hero-placeholder.jpg"
+      imageAlt="Elegantes Restaurant-Interieur"
+      ctaPrimary={{ text: 'Jetzt reservieren', href: '/reservierung' }}
+      ctaSecondary={{ text: 'Speisekarte ansehen', href: '/speisekarte' }}
+      variant="full"
+    />
+
+    <!-- Features Section -->
+    <section class="section features" aria-labelledby="features-heading">
+      <div class="container">
+        <h2 id="features-heading" class="section__heading">Unser Versprechen</h2>
+
+        <div class="features__grid">
+          {features.map((feature) => (
+            <div class="feature-card">
+              <h3 class="feature-card__title">{feature.title}</h3>
+              <p class="feature-card__description">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-box">
+          <h2 id="cta-heading" class="cta-box__heading">Reservieren Sie Ihren Tisch</h2>
+          <p class="cta-box__text">
+            Erleben Sie unvergessliche kulinarische Momente in unserem Restaurant.
+            Wir freuen uns auf Ihren Besuch!
+          </p>
+          <div class="cta-box__actions">
+            <Button href="/reservierung" variant="primary" size="lg">
+              Zur Reservierung
+            </Button>
+            <Button href="/kontakt" variant="tertiary" size="lg">
+              Kontakt aufnehmen
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .section {
+    padding-top: var(--layout-section-spacing);
+    padding-bottom: var(--layout-section-spacing);
+  }
+
+  .section__heading {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text-primary);
+  }
+
+  /* Features */
+  .features {
+    background-color: var(--color-background);
+  }
+
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .feature-card {
+    padding: var(--card-padding);
+    background: var(--card-bg);
+    border: var(--card-border-width) solid var(--card-border);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--primitive-shadow-lg);
+  }
+
+  .feature-card__title {
+    font-size: var(--primitive-font-size-2xl);
+    font-weight: var(--primitive-font-weight-semibold);
+    color: var(--color-brand-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .feature-card__description {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background-color: var(--color-surface);
+  }
+
+  .cta-box {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--color-background);
+    border-radius: var(--primitive-radius-xl);
+    box-shadow: var(--primitive-shadow-lg);
+  }
+
+  .cta-box__heading {
+    font-size: var(--primitive-font-size-4xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+  }
+
+  .cta-box__text {
+    font-size: var(--primitive-font-size-lg);
+    line-height: var(--primitive-line-height-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .cta-box__actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 767px) {
+    .features__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-box__actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

@@ -1,0 +1,250 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "layouts": {
+    "default": {
+      "id": "layout-default",
+      "description": "Default page layout with header, main, and footer",
+      "structure": {
+        "header": {
+          "component": "Header",
+          "slots": {
+            "logo": "Logo",
+            "navigation": "Navigation",
+            "actions": "HeaderActions"
+          },
+          "props": {
+            "sticky": true,
+            "transparent": false
+          }
+        },
+        "main": {
+          "component": "Main",
+          "slots": {
+            "content": "dynamic"
+          }
+        },
+        "footer": {
+          "component": "Footer",
+          "slots": {
+            "navigation": "FooterNavigation",
+            "social": "SocialLinks",
+            "legal": "LegalLinks"
+          }
+        }
+      }
+    },
+    "minimal": {
+      "id": "layout-minimal",
+      "description": "Minimal layout for error and system pages",
+      "structure": {
+        "header": {
+          "component": "MinimalHeader",
+          "slots": {
+            "logo": "Logo"
+          }
+        },
+        "main": {
+          "component": "Main",
+          "slots": {
+            "content": "dynamic"
+          }
+        },
+        "footer": {
+          "component": "MinimalFooter",
+          "slots": {
+            "legal": "LegalLinks"
+          }
+        }
+      }
+    }
+  },
+  "pages": {
+    "home": {
+      "path": "/",
+      "layout": "default",
+      "composition": [
+        {
+          "component": "Hero",
+          "props": {
+            "variant": "full",
+            "image": "/assets/img/hero-home.jpg",
+            "heading": "Willkommen im TC Wetzlar Restaurant",
+            "subheading": "Kulinarische Exzellenz im Herzen von Wetzlar",
+            "cta": {
+              "text": "Jetzt reservieren",
+              "href": "/reservierung",
+              "variant": "primary"
+            }
+          },
+          "conditions": {
+            "showOnMobile": true,
+            "priority": "high"
+          }
+        },
+        {
+          "component": "Features",
+          "props": {
+            "items": [
+              {
+                "icon": "chef",
+                "title": "Erlesene Küche",
+                "description": "Internationale und mediterrane Spezialitäten"
+              },
+              {
+                "icon": "wine",
+                "title": "Edle Getränke",
+                "description": "Ausgewählte Weine und Spirituosen"
+              },
+              {
+                "icon": "ambience",
+                "title": "Elegantes Ambiente",
+                "description": "Stilvolle Räumlichkeiten für jeden Anlass"
+              }
+            ]
+          }
+        },
+        {
+          "component": "Testimonials",
+          "props": {
+            "heading": "Das sagen unsere Gäste",
+            "items": []
+          }
+        },
+        {
+          "component": "CTA",
+          "props": {
+            "heading": "Reservieren Sie Ihren Tisch",
+            "description": "Erleben Sie unvergessliche kulinarische Momente",
+            "primaryAction": {
+              "text": "Zur Reservierung",
+              "href": "/reservierung"
+            },
+            "secondaryAction": {
+              "text": "Speisekarte ansehen",
+              "href": "/speisekarte"
+            }
+          }
+        }
+      ]
+    },
+    "menu": {
+      "path": "/speisekarte",
+      "layout": "default",
+      "composition": [
+        {
+          "component": "PageHeader",
+          "props": {
+            "heading": "Unsere Speisekarte",
+            "description": "Entdecken Sie unsere erlesenen Gerichte"
+          }
+        },
+        {
+          "component": "MenuSection",
+          "props": {
+            "categories": ["Vorspeisen", "Hauptgerichte", "Desserts", "Getränke"]
+          }
+        }
+      ]
+    },
+    "reservation": {
+      "path": "/reservierung",
+      "layout": "default",
+      "composition": [
+        {
+          "component": "PageHeader",
+          "props": {
+            "heading": "Tischreservierung",
+            "description": "Reservieren Sie jetzt Ihren Tisch"
+          }
+        },
+        {
+          "component": "ReservationForm",
+          "props": {
+            "action": "/api/reservation",
+            "method": "POST"
+          }
+        }
+      ]
+    },
+    "contact": {
+      "path": "/kontakt",
+      "layout": "default",
+      "composition": [
+        {
+          "component": "PageHeader",
+          "props": {
+            "heading": "Kontakt",
+            "description": "Wir freuen uns auf Ihre Nachricht"
+          }
+        },
+        {
+          "component": "ContactInfo",
+          "props": {}
+        },
+        {
+          "component": "TwoClickEmbed",
+          "props": {
+            "type": "map",
+            "provider": "OpenStreetMap",
+            "embedUrl": "https://www.openstreetmap.org/export/embed.html"
+          },
+          "conditions": {
+            "requiresConsent": true,
+            "consentCategory": "functional"
+          }
+        },
+        {
+          "component": "ContactForm",
+          "props": {
+            "action": "/api/contact",
+            "method": "POST"
+          }
+        }
+      ]
+    },
+    "error404": {
+      "path": "/404",
+      "layout": "minimal",
+      "composition": [
+        {
+          "component": "ErrorMessage",
+          "props": {
+            "code": "404",
+            "title": "Seite nicht gefunden",
+            "message": "Die angeforderte Seite existiert leider nicht.",
+            "action": {
+              "text": "Zur Startseite",
+              "href": "/"
+            }
+          }
+        }
+      ]
+    },
+    "error503": {
+      "path": "/503",
+      "layout": "minimal",
+      "composition": [
+        {
+          "component": "ErrorMessage",
+          "props": {
+            "code": "503",
+            "title": "Wartungsarbeiten",
+            "message": "Wir führen derzeit Wartungsarbeiten durch. Bitte versuchen Sie es später erneut.",
+            "retryAfter": 3600
+          }
+        }
+      ]
+    }
+  },
+  "bindings": {
+    "consent": {
+      "source": "ConsentManager",
+      "targets": ["TwoClickEmbed", "Analytics"]
+    },
+    "theme": {
+      "source": "ThemeManager",
+      "targets": ["Header", "Footer", "Main"]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# robots.txt for TC Wetzlar Restaurant
+# https://tc-wetzlar-restaurant.de/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin and system pages
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_astro/
+
+# Sitemap location
+Sitemap: https://tc-wetzlar-restaurant.de/sitemap.xml

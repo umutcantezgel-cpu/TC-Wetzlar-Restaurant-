@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "routes": [
+    {
+      "path": "/",
+      "priority": 1.0,
+      "changefreq": "weekly",
+      "lastmod": "auto",
+      "meta": {
+        "title": "TC Wetzlar Restaurant – Gehobene Gastronomie im Herzen von Wetzlar",
+        "description": "Erleben Sie kulinarische Exzellenz im TC Wetzlar Restaurant. Internationale und mediterrane Küche in elegantem Ambiente. Jetzt Tisch reservieren!",
+        "keywords": "Restaurant Wetzlar, Gehobene Gastronomie, Mediterrane Küche, Tischreservierung Wetzlar",
+        "robots": "index, follow",
+        "ogType": "website",
+        "ogImage": "/assets/img/og-home.jpg",
+        "twitterCard": "summary_large_image"
+      },
+      "canonical": "https://tc-wetzlar-restaurant.de/",
+      "alternates": [],
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "TC Wetzlar Restaurant",
+        "image": "https://tc-wetzlar-restaurant.de/assets/img/restaurant-exterior.jpg",
+        "description": "Gehobene Gastronomie im Herzen von Wetzlar mit internationaler und mediterraner Küche",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Musterstraße 123",
+          "addressLocality": "Wetzlar",
+          "addressRegion": "Hessen",
+          "postalCode": "35576",
+          "addressCountry": "DE"
+        },
+        "telephone": "+49-6441-123456",
+        "email": "info@tc-wetzlar-restaurant.de",
+        "url": "https://tc-wetzlar-restaurant.de",
+        "servesCuisine": ["International", "Mediterran", "Deutsche Küche"],
+        "priceRange": "€€€",
+        "acceptsReservations": "True",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "17:30",
+            "closes": "23:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "12:00",
+            "closes": "23:00"
+          }
+        ]
+      }
+    },
+    {
+      "path": "/speisekarte",
+      "priority": 0.9,
+      "changefreq": "monthly",
+      "lastmod": "auto",
+      "meta": {
+        "title": "Speisekarte – TC Wetzlar Restaurant",
+        "description": "Entdecken Sie unsere erlesene Speisekarte mit internationalen und mediterranen Spezialitäten. Frische, regionale Zutaten und kreative Kompositionen.",
+        "keywords": "Speisekarte Wetzlar, Menü Restaurant, Mediterrane Gerichte, Internationale Küche",
+        "robots": "index, follow",
+        "ogType": "website",
+        "ogImage": "/assets/img/og-menu.jpg"
+      },
+      "canonical": "https://tc-wetzlar-restaurant.de/speisekarte",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Menu",
+        "name": "Speisekarte TC Wetzlar Restaurant"
+      }
+    },
+    {
+      "path": "/reservierung",
+      "priority": 0.9,
+      "changefreq": "monthly",
+      "lastmod": "auto",
+      "meta": {
+        "title": "Tischreservierung – TC Wetzlar Restaurant",
+        "description": "Reservieren Sie jetzt Ihren Tisch im TC Wetzlar Restaurant. Einfache Online-Reservierung oder telefonisch unter +49-6441-123456.",
+        "keywords": "Tischreservierung Wetzlar, Online Reservierung Restaurant, Tisch buchen",
+        "robots": "index, follow",
+        "ogType": "website",
+        "ogImage": "/assets/img/og-reservation.jpg"
+      },
+      "canonical": "https://tc-wetzlar-restaurant.de/reservierung"
+    },
+    {
+      "path": "/ueber-uns",
+      "priority": 0.7,
+      "changefreq": "monthly",
+      "lastmod": "auto",
+      "meta": {
+        "title": "Über uns – TC Wetzlar Restaurant",
+        "description": "Lernen Sie das TC Wetzlar Restaurant kennen. Unsere Geschichte, Philosophie und das Team hinter der kulinarischen Exzellenz.",
+        "keywords": "Restaurant Team Wetzlar, Gastronomie Geschichte, Restaurant Philosophie",
+        "robots": "index, follow",
+        "ogType": "website",
+        "ogImage": "/assets/img/og-about.jpg"
+      },
+      "canonical": "https://tc-wetzlar-restaurant.de/ueber-uns",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "Über TC Wetzlar Restaurant"
+      }
+    },
+    {
+      "path": "/kontakt",
+      "priority": 0.8,
+      "changefreq": "monthly",
+      "lastmod": "auto",
+      "meta": {
+        "title": "Kontakt – TC Wetzlar Restaurant",
+        "description": "Kontaktieren Sie uns: TC Wetzlar Restaurant, Musterstraße 123, 35576 Wetzlar. Tel: +49-6441-123456, E-Mail: info@tc-wetzlar-restaurant.de",
+        "keywords": "Restaurant Kontakt Wetzlar, Anfahrt Restaurant, Öffnungszeiten",
+        "robots": "index, follow",
+        "ogType": "website",
+        "ogImage": "/assets/img/og-contact.jpg"
+      },
+      "canonical": "https://tc-wetzlar-restaurant.de/kontakt",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Kontakt TC Wetzlar Restaurant"
+      }
+    },
+    {
+      "path": "/impressum",
+      "priority": 0.3,
+      "changefreq": "yearly",
+      "lastmod": "auto",
+      "meta": {
+        "title": "Impressum – TC Wetzlar Restaurant",
+        "description": "Impressum und rechtliche Angaben des TC Wetzlar Restaurant GmbH.",
+        "robots": "noindex, follow"
+      },
+      "canonical": "https://tc-wetzlar-restaurant.de/impressum"
+    },
+    {
+      "path": "/datenschutz",
+      "priority": 0.3,
+      "changefreq": "yearly",
+      "lastmod": "auto",
+      "meta": {
+        "title": "Datenschutzerklärung – TC Wetzlar Restaurant",
+        "description": "Datenschutzerklärung des TC Wetzlar Restaurant. Informationen zur Verarbeitung personenbezogener Daten.",
+        "robots": "noindex, follow"
+      },
+      "canonical": "https://tc-wetzlar-restaurant.de/datenschutz"
+    },
+    {
+      "path": "/404",
+      "priority": 0.0,
+      "changefreq": "never",
+      "meta": {
+        "title": "Seite nicht gefunden – TC Wetzlar Restaurant",
+        "description": "Die angeforderte Seite wurde nicht gefunden.",
+        "robots": "noindex, nofollow"
+      }
+    },
+    {
+      "path": "/503",
+      "priority": 0.0,
+      "changefreq": "never",
+      "meta": {
+        "title": "Wartungsarbeiten – TC Wetzlar Restaurant",
+        "description": "Wir führen derzeit Wartungsarbeiten durch. Bitte versuchen Sie es später erneut.",
+        "robots": "noindex, nofollow"
+      }
+    }
+  ]
+}

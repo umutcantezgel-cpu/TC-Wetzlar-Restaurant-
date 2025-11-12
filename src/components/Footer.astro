@@ -1,0 +1,172 @@
+---
+/**
+ * Footer Component
+ * WCAG 2.2 AA Compliant
+ */
+
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+  restaurant: [
+    { href: '/', label: 'Start' },
+    { href: '/speisekarte', label: 'Speisekarte' },
+    { href: '/reservierung', label: 'Reservierung' },
+    { href: '/ueber-uns', label: 'Über uns' },
+  ],
+  service: [
+    { href: '/kontakt', label: 'Kontakt' },
+    { href: '/impressum', label: 'Impressum' },
+    { href: '/datenschutz', label: 'Datenschutz' },
+  ],
+};
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__container container">
+    <div class="footer__grid">
+      <!-- Brand Section -->
+      <div class="footer__section">
+        <h2 class="footer__heading">TC Wetzlar Restaurant</h2>
+        <p class="footer__text">
+          Gehobene Gastronomie im Herzen von Wetzlar. Erleben Sie kulinarische
+          Exzellenz in elegantem Ambiente.
+        </p>
+      </div>
+
+      <!-- Navigation Section -->
+      <div class="footer__section">
+        <h3 class="footer__heading">Restaurant</h3>
+        <nav aria-label="Footer Navigation Restaurant">
+          <ul class="footer__list" role="list">
+            {footerLinks.restaurant.map(({ href, label }) => (
+              <li class="footer__list-item">
+                <a href={href} class="footer__link">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Service Section -->
+      <div class="footer__section">
+        <h3 class="footer__heading">Service</h3>
+        <nav aria-label="Footer Navigation Service">
+          <ul class="footer__list" role="list">
+            {footerLinks.service.map(({ href, label }) => (
+              <li class="footer__list-item">
+                <a href={href} class="footer__link">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="footer__section">
+        <h3 class="footer__heading">Kontakt</h3>
+        <address class="footer__address">
+          <p class="footer__text">
+            Musterstraße 123<br />
+            35576 Wetzlar
+          </p>
+          <p class="footer__text">
+            Tel: <a href="tel:+496441123456" class="footer__link">+49 6441 123456</a><br />
+            E-Mail: <a href="mailto:info@tc-wetzlar-restaurant.de" class="footer__link">info@tc-wetzlar-restaurant.de</a>
+          </p>
+        </address>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer__bottom">
+      <p class="footer__copyright">
+        © {currentYear} TC Wetzlar Restaurant GmbH. Alle Rechte vorbehalten.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: var(--footer-padding);
+    margin-top: auto;
+  }
+
+  .footer__container {
+    max-width: var(--layout-max-width);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .footer__section {
+    min-width: 0;
+  }
+
+  .footer__heading {
+    font-size: var(--primitive-font-size-lg);
+    font-weight: var(--primitive-font-weight-semibold);
+    color: var(--color-brand-primary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .footer__text {
+    font-size: var(--primitive-font-size-sm);
+    line-height: var(--primitive-line-height-relaxed);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .footer__address {
+    font-style: normal;
+  }
+
+  .footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer__list-item {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .footer__link {
+    color: var(--footer-link);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    display: inline-block;
+  }
+
+  .footer__link:hover {
+    color: var(--color-brand-primary);
+    text-decoration: underline;
+  }
+
+  .footer__bottom {
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+  }
+
+  .footer__copyright {
+    font-size: var(--primitive-font-size-sm);
+    margin: 0;
+  }
+
+  @media (max-width: 767px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+  }
+</style>

@@ -1,0 +1,146 @@
+---
+/**
+ * 404 Error Page
+ * Lightweight, no external dependencies
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+
+const seoData = {
+  title: 'Seite nicht gefunden – TC Wetzlar Restaurant',
+  description: 'Die angeforderte Seite wurde nicht gefunden.',
+  robots: 'noindex, nofollow',
+};
+---
+
+<BaseLayout {...seoData}>
+  <div class="error-page">
+    <div class="error-page__content container">
+      <div class="error-page__logo">
+        <a href="/" aria-label="TC Wetzlar Restaurant - Zur Startseite">
+          <span class="logo">TC Wetzlar</span>
+        </a>
+      </div>
+
+      <main id="main-content" class="error-page__main">
+        <h1 class="error-page__code">404</h1>
+        <h2 class="error-page__title">Seite nicht gefunden</h2>
+        <p class="error-page__message">
+          Die von Ihnen angeforderte Seite existiert leider nicht.
+          Möglicherweise wurde sie verschoben oder gelöscht.
+        </p>
+
+        <div class="error-page__actions">
+          <Button href="/" variant="primary" size="lg">
+            Zur Startseite
+          </Button>
+          <Button href="/kontakt" variant="tertiary" size="lg">
+            Kontakt
+          </Button>
+        </div>
+      </main>
+
+      <footer class="error-page__footer">
+        <nav aria-label="Footer Navigation">
+          <a href="/impressum" class="footer-link">Impressum</a>
+          <span aria-hidden="true">|</span>
+          <a href="/datenschutz" class="footer-link">Datenschutz</a>
+        </nav>
+      </footer>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .error-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-background);
+  }
+
+  .error-page__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+  }
+
+  .error-page__logo {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .error-page__logo a {
+    text-decoration: none;
+  }
+
+  .logo {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-2xl);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-brand-primary);
+  }
+
+  .error-page__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+  }
+
+  .error-page__code {
+    font-size: clamp(4rem, 15vw, 10rem);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-brand-primary);
+    line-height: 1;
+    margin: 0 0 var(--spacing-md);
+  }
+
+  .error-page__title {
+    font-size: var(--primitive-font-size-3xl);
+    margin: 0 0 var(--spacing-md);
+  }
+
+  .error-page__message {
+    font-size: var(--primitive-font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 0 var(--spacing-xl);
+    line-height: var(--primitive-line-height-relaxed);
+  }
+
+  .error-page__actions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .error-page__footer {
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .footer-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 0 var(--spacing-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-link:hover {
+    color: var(--color-brand-primary);
+  }
+
+  @media (max-width: 767px) {
+    .error-page__actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
