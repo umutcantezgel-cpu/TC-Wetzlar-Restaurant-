@@ -1,0 +1,333 @@
+---
+/**
+ * Contact Form Component
+ * Netlify Forms compatible
+ * WCAG 2.2 AA Compliant with ARIA labels
+ */
+---
+
+<form
+  class="contact-form glass-card"
+  method="POST"
+  data-netlify="true"
+  name="contact"
+  data-netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="contact" />
+
+  <div class="contact-form__header">
+    <h2 class="contact-form__title">Kontaktieren Sie uns</h2>
+    <p class="contact-form__description">
+      Wir freuen uns auf Ihre Nachricht und melden uns schnellstmöglich bei Ihnen.
+    </p>
+  </div>
+
+  <div class="contact-form__fields">
+    <!-- Name -->
+    <div class="form-field">
+      <label for="contact-name" class="form-field__label">
+        Name <span class="form-field__required" aria-label="Pflichtfeld">*</span>
+      </label>
+      <input
+        type="text"
+        id="contact-name"
+        name="name"
+        required
+        class="form-field__input"
+        placeholder="Max Mustermann"
+        autocomplete="name"
+        aria-required="true"
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="form-field">
+      <label for="contact-email" class="form-field__label">
+        E-Mail <span class="form-field__required">*</span>
+      </label>
+      <input
+        type="email"
+        id="contact-email"
+        name="email"
+        required
+        class="form-field__input"
+        placeholder="max@beispiel.de"
+        autocomplete="email"
+        aria-required="true"
+      />
+    </div>
+
+    <!-- Phone -->
+    <div class="form-field">
+      <label for="contact-phone" class="form-field__label">
+        Telefon
+      </label>
+      <input
+        type="tel"
+        id="contact-phone"
+        name="phone"
+        class="form-field__input"
+        placeholder="+49 123 456789"
+        autocomplete="tel"
+      />
+    </div>
+
+    <!-- Message -->
+    <div class="form-field form-field--full">
+      <label for="contact-message" class="form-field__label">
+        Nachricht <span class="form-field__required">*</span>
+      </label>
+      <textarea
+        id="contact-message"
+        name="message"
+        required
+        rows="6"
+        class="form-field__textarea"
+        placeholder="Ihre Nachricht an uns..."
+        aria-required="true"
+      ></textarea>
+    </div>
+
+    <!-- Honeypot -->
+    <div class="form-field--hidden">
+      <label for="contact-bot-field">Don't fill this out:</label>
+      <input type="text" name="bot-field" id="contact-bot-field" tabindex="-1" />
+    </div>
+
+    <!-- Privacy -->
+    <div class="form-field form-field--checkbox form-field--full">
+      <label class="form-field__checkbox">
+        <input type="checkbox" name="privacy" required aria-required="true" />
+        <span class="form-field__checkbox-label">
+          Ich habe die <a href="/datenschutz" class="form-field__link">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="form-field__required">*</span>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <div class="contact-form__actions">
+    <button type="submit" class="btn btn--primary btn--lg">
+      <span>Nachricht senden</span>
+      <svg class="btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M2 10L18 10M18 10L11 3M18 10L11 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="contact-form__status" role="status" aria-live="polite" aria-atomic="true"></div>
+</form>
+
+<style>
+  .contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+  }
+
+  .contact-form__header {
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .contact-form__title {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-3xl);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .contact-form__description {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+  }
+
+  .contact-form__fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .form-field--full {
+    grid-column: 1 / -1;
+  }
+
+  .form-field--hidden {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .form-field__label {
+    font-weight: var(--primitive-font-weight-medium);
+    color: var(--color-text-primary);
+    font-size: var(--primitive-font-size-sm);
+  }
+
+  .form-field__required {
+    color: var(--primitive-error-500);
+  }
+
+  .form-field__input,
+  .form-field__textarea {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--primitive-radius-lg);
+    background: var(--glass-bg-light-subtle);
+    backdrop-filter: var(--glass-blur-sm);
+    -webkit-backdrop-filter: var(--glass-blur-sm);
+    font-family: inherit;
+    font-size: var(--font-size-body);
+    color: var(--color-text-primary);
+    min-height: 44px;
+    transition: all var(--transition-fast);
+  }
+
+  .form-field__textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-field__input:focus,
+  .form-field__textarea:focus {
+    outline: none;
+    border-color: var(--color-brand-primary);
+    background: var(--glass-bg-light);
+    box-shadow: 0 0 0 3px rgba(201, 161, 54, 0.1);
+  }
+
+  .form-field__input::placeholder,
+  .form-field__textarea::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .form-field--checkbox {
+    align-items: flex-start;
+  }
+
+  .form-field__checkbox {
+    display: flex;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+  }
+
+  .form-field__checkbox input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--color-brand-primary);
+  }
+
+  .form-field__checkbox-label {
+    flex: 1;
+    font-size: var(--primitive-font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+  }
+
+  .form-field__link {
+    color: var(--color-brand-primary);
+    text-decoration: underline;
+  }
+
+  .form-field__link:hover {
+    color: var(--color-brand-primary-hover);
+  }
+
+  .contact-form__actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: none;
+    border-radius: var(--primitive-radius-lg);
+    font-family: inherit;
+    font-size: var(--primitive-font-size-base);
+    font-weight: var(--primitive-font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    min-height: 44px;
+  }
+
+  .btn--primary {
+    background: var(--gradient-brand);
+    color: white;
+    box-shadow: 0 4px 12px rgba(201, 161, 54, 0.3);
+  }
+
+  .btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201, 161, 54, 0.4);
+  }
+
+  .btn--lg {
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-size: var(--primitive-font-size-lg);
+  }
+
+  .btn__icon {
+    transition: transform var(--transition-fast);
+  }
+
+  .btn:hover .btn__icon {
+    transform: translateX(4px);
+  }
+
+  .contact-form__status {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    border-radius: var(--primitive-radius-lg);
+    text-align: center;
+    font-weight: var(--primitive-font-weight-medium);
+    display: none;
+  }
+
+  .contact-form__status.success {
+    display: block;
+    background: rgba(5, 150, 105, 0.1);
+    color: var(--primitive-success-500);
+    border: 2px solid var(--primitive-success-500);
+  }
+
+  .contact-form__status.error {
+    display: block;
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--primitive-error-500);
+    border: 2px solid var(--primitive-error-500);
+  }
+
+  @media (max-width: 767px) {
+    .contact-form {
+      padding: var(--spacing-lg);
+    }
+
+    .contact-form__fields {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .btn--lg {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .contact-form.is-loading .btn {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+</style>
+
+<script src="../scripts/scroll-reveal.ts"></script>

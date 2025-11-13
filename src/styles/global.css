@@ -318,3 +318,76 @@ button {
     display: none !important;
   }
 }
+
+/* ============================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================ */
+
+/* Base reveal state - hidden by default */
+[data-reveal],
+[data-reveal-up],
+[data-reveal-left],
+[data-reveal-right],
+[data-reveal-stagger] > * {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Basic fade-in */
+[data-reveal].reveal--active {
+  opacity: 1;
+}
+
+/* Fade up - starts below and moves up */
+[data-reveal-up] {
+  transform: translateY(30px);
+}
+
+[data-reveal-up].reveal--active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade from left */
+[data-reveal-left] {
+  transform: translateX(-30px);
+}
+
+[data-reveal-left].reveal--active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade from right */
+[data-reveal-right] {
+  transform: translateX(30px);
+}
+
+[data-reveal-right].reveal--active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger children */
+[data-reveal-stagger].reveal--active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal-stagger] > * {
+  transform: translateY(20px);
+}
+
+/* Reduced motion override */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-up],
+  [data-reveal-left],
+  [data-reveal-right],
+  [data-reveal-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

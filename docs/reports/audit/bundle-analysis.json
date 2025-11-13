@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-11-12T22:14:39.900Z",
+  "timestamp": "2025-11-13T22:09:09.324Z",
   "budgets": {
     "js": 35840,
     "css": 46080
@@ -24,9 +24,9 @@
     ],
     "css": [
       {
-        "file": "dist/assets/css/style.CUkv8BSc.css",
-        "raw": 36541,
-        "gzip": 7442
+        "file": "dist/assets/css/style.Dx6R-e3c.css",
+        "raw": 42120,
+        "gzip": 8194
       }
     ]
   },
@@ -38,8 +38,8 @@
       "exceeded": false
     },
     "css": {
-      "total": 36541,
-      "gzip": 7442,
+      "total": 42120,
+      "gzip": 8194,
       "count": 1,
       "exceeded": false
     }

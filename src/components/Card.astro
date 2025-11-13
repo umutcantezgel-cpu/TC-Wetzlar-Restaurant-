@@ -1,0 +1,320 @@
+---
+/**
+ * Card Component
+ * Premium card with glassmorphism effect
+ * WCAG 2.2 AA Compliant
+ */
+
+export interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  href?: string;
+  variant?: 'glass' | 'solid' | 'gradient';
+  featured?: boolean;
+}
+
+const {
+  title,
+  description,
+  icon,
+  href,
+  variant = 'glass',
+  featured = false,
+} = Astro.props;
+
+const Tag = href ? 'a' : 'article';
+---
+
+<Tag
+  class:list={[
+    'card',
+    `card--${variant}`,
+    { 'card--featured': featured },
+    { 'card--interactive': href },
+  ]}
+  href={href}
+  {...(href && { 'rel': 'noopener' })}
+>
+  {icon && (
+    <div class="card__icon" aria-hidden="true">
+      <div class="card__icon-wrapper">
+        {icon}
+      </div>
+    </div>
+  )}
+
+  <div class="card__content">
+    <h3 class="card__title">{title}</h3>
+    <p class="card__description">{description}</p>
+  </div>
+
+  {href && (
+    <div class="card__arrow" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M5 12H19M19 12L12 5M19 12L12 19"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+  )}
+
+  {featured && (
+    <div class="card__badge" aria-label="Empfohlen">
+      <span class="card__badge-text">Empfohlen</span>
+    </div>
+  )}
+</Tag>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    border-radius: var(--primitive-radius-2xl);
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+  }
+
+  /* Variant: Glass (default) */
+  .card--glass {
+    background: var(--glass-bg-light);
+    border: 1px solid var(--glass-border-light);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .card--glass:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--glass-shadow-lg);
+    border-color: var(--color-brand-primary);
+  }
+
+  /* Variant: Solid */
+  .card--solid {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--primitive-shadow-md);
+  }
+
+  .card--solid:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--primitive-shadow-xl);
+    border-color: var(--color-brand-primary);
+  }
+
+  /* Variant: Gradient */
+  .card--gradient {
+    background: var(--gradient-brand-warm);
+    border: none;
+    box-shadow: 0 8px 24px rgba(201, 161, 54, 0.3);
+    color: white;
+  }
+
+  .card--gradient .card__title,
+  .card--gradient .card__description {
+    color: white;
+  }
+
+  .card--gradient:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(201, 161, 54, 0.4);
+  }
+
+  /* Interactive states */
+  .card--interactive {
+    cursor: pointer;
+  }
+
+  .card--interactive:focus {
+    outline: 3px solid var(--color-brand-primary);
+    outline-offset: 2px;
+  }
+
+  .card--interactive:active {
+    transform: translateY(-4px);
+  }
+
+  /* Featured badge */
+  .card--featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-brand);
+  }
+
+  .card__badge {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--gradient-brand);
+    border-radius: var(--primitive-radius-full);
+    box-shadow: 0 4px 12px rgba(201, 161, 54, 0.4);
+  }
+
+  .card__badge-text {
+    font-size: var(--primitive-font-size-xs);
+    font-weight: var(--primitive-font-weight-bold);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Icon */
+  .card__icon {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .card__icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--primitive-radius-xl);
+    background: var(--glass-bg-gold);
+    color: var(--color-brand-primary);
+    font-size: var(--primitive-font-size-3xl);
+    transition: all var(--transition-normal);
+  }
+
+  .card:hover .card__icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+    background: var(--gradient-brand);
+    color: white;
+  }
+
+  /* Content */
+  .card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .card__title {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-2xl);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--primitive-line-height-tight);
+  }
+
+  .card__description {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+    margin: 0;
+  }
+
+  /* Arrow indicator for links */
+  .card__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: var(--spacing-md);
+    color: var(--color-brand-primary);
+    transition: transform var(--transition-fast);
+  }
+
+  .card:hover .card__arrow {
+    transform: translateX(4px);
+  }
+
+  .card--gradient .card__arrow {
+    color: white;
+  }
+
+  /* Gradient variant icon adjustments */
+  .card--gradient .card__icon-wrapper {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .card--gradient:hover .card__icon-wrapper {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    .card {
+      padding: var(--spacing-md);
+    }
+
+    .card__icon-wrapper {
+      width: 56px;
+      height: 56px;
+      font-size: var(--primitive-font-size-2xl);
+    }
+
+    .card__title {
+      font-size: var(--primitive-font-size-xl);
+    }
+  }
+
+  /* Loading skeleton state */
+  .card.skeleton {
+    pointer-events: none;
+  }
+
+  .card.skeleton .card__icon-wrapper,
+  .card.skeleton .card__title,
+  .card.skeleton .card__description {
+    background: linear-gradient(
+      90deg,
+      var(--glass-bg-light) 0%,
+      var(--glass-bg-light-subtle) 50%,
+      var(--glass-bg-light) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    color: transparent;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .card {
+      border-width: 2px;
+    }
+
+    .card--glass,
+    .card--solid {
+      border-color: var(--color-text-primary);
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .card {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      border: 1px solid #000;
+    }
+
+    .card__arrow,
+    .card__badge {
+      display: none;
+    }
+  }
+</style>
