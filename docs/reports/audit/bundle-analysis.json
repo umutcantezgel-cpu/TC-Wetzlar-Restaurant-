@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-11-13T22:09:09.324Z",
+  "timestamp": "2025-11-13T22:27:32.364Z",
   "budgets": {
     "js": 35840,
     "css": 46080
@@ -7,39 +7,84 @@
   "bundles": {
     "js": [
       {
-        "file": "dist/assets/js/Button.B6Ru7F9f.js",
-        "raw": 4560,
-        "gzip": 1697
+        "file": "dist/assets/js/BaseLayout.CIICIgzG.js",
+        "raw": 3408,
+        "gzip": 1370
       },
       {
-        "file": "dist/assets/js/astro/server.Dt9To2Qw.js",
+        "file": "dist/assets/js/Button.D9OByiN4.js",
+        "raw": 1312,
+        "gzip": 635
+      },
+      {
+        "file": "dist/assets/js/Card.CQSRoBTt.js",
+        "raw": 1943,
+        "gzip": 837
+      },
+      {
+        "file": "dist/assets/js/Footer.CfrPH5kp.js",
+        "raw": 5554,
+        "gzip": 1582
+      },
+      {
+        "file": "dist/assets/js/astro/server.Dvld-7Qp.js",
         "raw": 61461,
-        "gzip": 16170
+        "gzip": 16172
       },
       {
-        "file": "dist/assets/js/astro.B05XWx6v.js",
+        "file": "dist/assets/js/astro.C3XO8OB8.js",
         "raw": 75,
         "gzip": 80
+      },
+      {
+        "file": "dist/assets/js/hoisted.8lcfnaKv.js",
+        "raw": 61,
+        "gzip": 64
+      },
+      {
+        "file": "dist/assets/js/hoisted.BJnyUoLC.js",
+        "raw": 61,
+        "gzip": 64
+      },
+      {
+        "file": "dist/assets/js/hoisted.BxbSXEZH.js",
+        "raw": 61,
+        "gzip": 64
+      },
+      {
+        "file": "dist/assets/js/hoisted.DAQ5m9Mw.js",
+        "raw": 2067,
+        "gzip": 761
+      },
+      {
+        "file": "dist/assets/js/hoisted.Dgk4NeCQ.js",
+        "raw": 61,
+        "gzip": 64
+      },
+      {
+        "file": "dist/assets/js/hoisted.Ha6HOTN6.js",
+        "raw": 1656,
+        "gzip": 664
       }
     ],
     "css": [
       {
-        "file": "dist/assets/css/style.Dx6R-e3c.css",
-        "raw": 42120,
-        "gzip": 8194
+        "file": "dist/assets/css/style.qE-mrgPs.css",
+        "raw": 70798,
+        "gzip": 10897
       }
     ]
   },
   "summary": {
     "js": {
-      "total": 66096,
-      "gzip": 17947,
-      "count": 3,
+      "total": 77720,
+      "gzip": 22357,
+      "count": 12,
       "exceeded": false
     },
     "css": {
-      "total": 42120,
-      "gzip": 8194,
+      "total": 70798,
+      "gzip": 10897,
       "count": 1,
       "exceeded": false
     }

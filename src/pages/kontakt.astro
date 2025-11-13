@@ -1,0 +1,373 @@
+---
+/**
+ * Kontakt - TC Wetzlar Restaurant
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Card from '../components/Card.astro';
+
+// SEO Data
+const seoData = {
+  title: 'Kontakt – TC Wetzlar Restaurant',
+  description:
+    'Kontaktieren Sie das TC Wetzlar Restaurant. Wir freuen uns auf Ihre Anfrage, Reservierung oder Ihr Feedback.',
+  canonical: 'https://tc-wetzlar-restaurant.de/kontakt',
+  ogImage: '/assets/img/og-contact.jpg',
+};
+
+const contactMethods = [
+  {
+    title: 'Telefon',
+    description: 'Rufen Sie uns an für schnelle Reservierungen oder Anfragen.',
+    icon: '📞',
+    href: 'tel:+4964441123456',
+  },
+  {
+    title: 'E-Mail',
+    description: 'Schreiben Sie uns eine E-Mail – wir antworten innerhalb von 24 Stunden.',
+    icon: '✉️',
+    href: 'mailto:info@tc-wetzlar-restaurant.de',
+  },
+  {
+    title: 'Öffnungszeiten',
+    description: 'Di–Fr: 17:30–23:00 Uhr | Sa–So: 12:00–23:00 Uhr | Montag Ruhetag',
+    icon: '🕐',
+  },
+];
+---
+
+<BaseLayout {...seoData}>
+  <Header />
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" data-reveal-up>
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Kontakt</h1>
+          <p class="hero-description">
+            Wir freuen uns auf Ihre Nachricht. Ob Reservierung, Anfrage oder Feedback –
+            kontaktieren Sie uns gerne über das Formular oder direkt.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="contact-methods" aria-labelledby="methods-heading">
+      <div class="container">
+        <h2 id="methods-heading" class="section__heading" data-reveal-up>
+          Wie können wir Ihnen helfen?
+        </h2>
+
+        <div class="contact-methods__grid" data-reveal-stagger>
+          {contactMethods.map((method) => (
+            <Card
+              title={method.title}
+              description={method.description}
+              icon={method.icon}
+              href={method.href}
+              variant="glass"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" aria-labelledby="form-heading">
+      <div class="container">
+        <div class="form-wrapper" data-reveal-up>
+          <h2 id="form-heading" class="visually-hidden">Kontaktformular</h2>
+          <ContactForm />
+        </div>
+      </div>
+    </section>
+
+    <!-- Location & Address -->
+    <section class="location-section" aria-labelledby="location-heading">
+      <div class="container">
+        <div class="location-grid">
+          <!-- Address Card -->
+          <div class="location-card glass-card" data-reveal-left>
+            <h2 id="location-heading" class="location-card__heading">
+              Besuchen Sie uns
+            </h2>
+
+            <address class="location-card__address">
+              <div class="address-item">
+                <strong class="address-item__label">Adresse:</strong>
+                <span class="address-item__value">
+                  Musterstraße 123<br />
+                  35576 Wetzlar
+                </span>
+              </div>
+
+              <div class="address-item">
+                <strong class="address-item__label">Telefon:</strong>
+                <a href="tel:+4964441123456" class="address-item__link">
+                  +49 6441 123456
+                </a>
+              </div>
+
+              <div class="address-item">
+                <strong class="address-item__label">E-Mail:</strong>
+                <a href="mailto:info@tc-wetzlar-restaurant.de" class="address-item__link">
+                  info@tc-wetzlar-restaurant.de
+                </a>
+              </div>
+
+              <div class="address-item">
+                <strong class="address-item__label">Öffnungszeiten:</strong>
+                <div class="address-item__value">
+                  <p>Dienstag – Freitag: 17:30 – 23:00 Uhr</p>
+                  <p>Samstag – Sonntag: 12:00 – 23:00 Uhr</p>
+                  <p><em>Montag Ruhetag</em></p>
+                </div>
+              </div>
+            </address>
+          </div>
+
+          <!-- Map Placeholder -->
+          <div class="map-placeholder glass-card" data-reveal-right>
+            <div class="map-placeholder__content">
+              <h3 class="map-placeholder__heading">Anfahrt</h3>
+              <p class="map-placeholder__text">
+                Unser Restaurant befindet sich im Herzen von Wetzlar, nur wenige Gehminuten
+                vom Hauptbahnhof entfernt.
+              </p>
+              <p class="map-placeholder__text">
+                <strong>Parkmöglichkeiten:</strong> Parkplätze befinden sich in der Tiefgarage
+                am Domplatz (5 Minuten Fußweg).
+              </p>
+              <a
+                href="https://www.google.com/maps/search/Wetzlar"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="map-placeholder__link"
+              >
+                In Google Maps öffnen →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--gradient-mesh), var(--color-surface);
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-family: var(--font-family-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-description {
+    font-size: var(--primitive-font-size-xl);
+    line-height: var(--primitive-line-height-relaxed);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Contact Methods */
+  .contact-methods {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--color-background);
+  }
+
+  .section__heading {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-4xl);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    color: var(--color-text-primary);
+  }
+
+  .contact-methods__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Contact Form Section */
+  .contact-form-section {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(
+      to bottom,
+      var(--color-surface) 0%,
+      var(--color-background) 100%
+    );
+  }
+
+  .form-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Location Section */
+  .location-section {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--color-background);
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .location-card {
+    padding: var(--spacing-xl);
+  }
+
+  .location-card__heading {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-3xl);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .location-card__address {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .address-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .address-item__label {
+    font-weight: var(--primitive-font-weight-semibold);
+    color: var(--color-text-primary);
+    font-size: var(--primitive-font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .address-item__value {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+  }
+
+  .address-item__value p {
+    margin: 0 0 var(--spacing-xs) 0;
+  }
+
+  .address-item__value p:last-child {
+    margin-bottom: 0;
+  }
+
+  .address-item__link {
+    color: var(--color-brand-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .address-item__link:hover {
+    color: var(--color-brand-primary-hover);
+    text-decoration: underline;
+  }
+
+  /* Map Placeholder */
+  .map-placeholder {
+    padding: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+  }
+
+  .map-placeholder__content {
+    text-align: center;
+    max-width: 400px;
+  }
+
+  .map-placeholder__heading {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-2xl);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .map-placeholder__text {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .map-placeholder__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-brand-primary);
+    font-weight: var(--primitive-font-weight-semibold);
+    text-decoration: none;
+    transition: gap var(--transition-fast);
+  }
+
+  .map-placeholder__link:hover {
+    gap: var(--spacing-sm);
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    .hero-section {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .contact-methods {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .contact-methods__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form-section {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .location-section {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .location-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .map-placeholder {
+      min-height: 300px;
+    }
+  }
+</style>
+
+<script src="../scripts/scroll-reveal.ts"></script>

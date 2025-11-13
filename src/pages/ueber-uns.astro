@@ -1,0 +1,162 @@
+---
+/**
+ * Über uns - TC Wetzlar Restaurant
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Card from '../components/Card.astro';
+
+const seoData = {
+  title: 'Über uns – TC Wetzlar Restaurant',
+  description:
+    'Erfahren Sie mehr über das TC Wetzlar Restaurant, unsere Philosophie und unser Team.',
+  canonical: 'https://tc-wetzlar-restaurant.de/ueber-uns',
+};
+
+const values = [
+  {
+    title: 'Qualität',
+    description: 'Nur beste Zutaten von ausgewählten regionalen und internationalen Lieferanten.',
+    icon: '⭐',
+  },
+  {
+    title: 'Handwerk',
+    description: 'Klassische Kochtechniken kombiniert mit modernen kulinarischen Trends.',
+    icon: '👨‍🍳',
+  },
+  {
+    title: 'Gastfreundschaft',
+    description: 'Persönlicher Service und Aufmerksamkeit für jeden Gast.',
+    icon: '❤️',
+  },
+];
+---
+
+<BaseLayout {...seoData}>
+  <Header />
+
+  <main id="main-content">
+    <section class="hero-section" data-reveal-up>
+      <div class="container">
+        <h1 class="hero-title">Über uns</h1>
+        <p class="hero-description">
+          Willkommen im TC Wetzlar Restaurant – Ihrem Ort für kulinarische Exzellenz
+          im Herzen von Wetzlar.
+        </p>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <div class="container">
+        <div class="story-content glass-card" data-reveal-up>
+          <h2 class="story-heading">Unsere Geschichte</h2>
+          <p>
+            Seit unserer Gründung im Jahr 2024 steht das TC Wetzlar Restaurant für
+            gehobene Gastronomie und kulinarische Vielfalt. Unser engagiertes Team
+            kreiert täglich Gerichte, die Tradition und Innovation vereinen.
+          </p>
+          <p>
+            Unser Küchenchef und sein Team legen größten Wert auf frische, hochwertige
+            Zutaten und handwerkliche Perfektion. Jedes Gericht wird mit Leidenschaft
+            und Hingabe zubereitet.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="values-section" aria-labelledby="values-heading">
+      <div class="container">
+        <h2 id="values-heading" class="section-heading" data-reveal-up>
+          Unsere Werte
+        </h2>
+        <div class="values-grid" data-reveal-stagger>
+          {values.map((value) => (
+            <Card
+              title={value.title}
+              description={value.description}
+              icon={value.icon}
+              variant="glass"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hero-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--gradient-mesh), var(--color-surface);
+    text-align: center;
+  }
+
+  .hero-title {
+    font-family: var(--font-family-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .hero-description {
+    font-size: var(--primitive-font-size-xl);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .story-section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .story-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+  }
+
+  .story-heading {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-3xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .story-content p {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .values-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--color-surface);
+  }
+
+  .section-heading {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-4xl);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 767px) {
+    .hero-section,
+    .story-section,
+    .values-section {
+      padding: var(--spacing-2xl) 0;
+    }
+  }
+</style>
+
+<script src="../scripts/scroll-reveal.ts"></script>

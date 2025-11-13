@@ -1,0 +1,583 @@
+---
+/**
+ * Reservierung - TC Wetzlar Restaurant
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Card from '../components/Card.astro';
+
+// SEO Data
+const seoData = {
+  title: 'Tisch reservieren – TC Wetzlar Restaurant',
+  description:
+    'Reservieren Sie jetzt Ihren Tisch im TC Wetzlar Restaurant. Schnell, einfach und bequem online.',
+  canonical: 'https://tc-wetzlar-restaurant.de/reservierung',
+  ogImage: '/assets/img/og-reservation.jpg',
+};
+
+const benefits = [
+  {
+    title: 'Garantierter Platz',
+    description: 'Sichern Sie sich Ihren bevorzugten Tisch zum Wunschtermin.',
+    icon: '✓',
+  },
+  {
+    title: 'Flexible Zeiten',
+    description: 'Wählen Sie aus unseren verfügbaren Zeitfenstern.',
+    icon: '🕐',
+  },
+  {
+    title: 'Besondere Anlässe',
+    description: 'Teilen Sie uns Ihre besonderen Wünsche mit.',
+    icon: '🎉',
+  },
+];
+---
+
+<BaseLayout {...seoData}>
+  <Header />
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" data-reveal-up>
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Tisch reservieren</h1>
+          <p class="hero-description">
+            Freuen Sie sich auf ein unvergessliches kulinarisches Erlebnis.
+            Reservieren Sie jetzt Ihren Tisch!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits-section" aria-labelledby="benefits-heading">
+      <div class="container">
+        <h2 id="benefits-heading" class="visually-hidden">Reservierungs-Vorteile</h2>
+
+        <div class="benefits-grid" data-reveal-stagger>
+          {benefits.map((benefit) => (
+            <Card
+              title={benefit.title}
+              description={benefit.description}
+              icon={benefit.icon}
+              variant="glass"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Reservation Form -->
+    <section class="reservation-section" aria-labelledby="form-heading">
+      <div class="container">
+        <div class="reservation-wrapper" data-reveal-up>
+          <form
+            class="reservation-form glass-card"
+            method="POST"
+            data-netlify="true"
+            name="reservation"
+            data-netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="reservation" />
+
+            <div class="reservation-form__header">
+              <h2 id="form-heading" class="reservation-form__title">
+                Reservierungsanfrage
+              </h2>
+              <p class="reservation-form__description">
+                Füllen Sie das Formular aus und wir bestätigen Ihre Reservierung
+                schnellstmöglich per E-Mail oder Telefon.
+              </p>
+            </div>
+
+            <div class="reservation-form__fields">
+              <!-- Name -->
+              <div class="form-field">
+                <label for="res-name" class="form-field__label">
+                  Name <span class="form-field__required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="res-name"
+                  name="name"
+                  required
+                  class="form-field__input"
+                  placeholder="Max Mustermann"
+                  autocomplete="name"
+                  aria-required="true"
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="form-field">
+                <label for="res-email" class="form-field__label">
+                  E-Mail <span class="form-field__required">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="res-email"
+                  name="email"
+                  required
+                  class="form-field__input"
+                  placeholder="max@beispiel.de"
+                  autocomplete="email"
+                  aria-required="true"
+                />
+              </div>
+
+              <!-- Phone -->
+              <div class="form-field">
+                <label for="res-phone" class="form-field__label">
+                  Telefon <span class="form-field__required">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="res-phone"
+                  name="phone"
+                  required
+                  class="form-field__input"
+                  placeholder="+49 123 456789"
+                  autocomplete="tel"
+                  aria-required="true"
+                />
+              </div>
+
+              <!-- Date -->
+              <div class="form-field">
+                <label for="res-date" class="form-field__label">
+                  Datum <span class="form-field__required">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="res-date"
+                  name="date"
+                  required
+                  class="form-field__input"
+                  aria-required="true"
+                />
+              </div>
+
+              <!-- Time -->
+              <div class="form-field">
+                <label for="res-time" class="form-field__label">
+                  Uhrzeit <span class="form-field__required">*</span>
+                </label>
+                <select
+                  id="res-time"
+                  name="time"
+                  required
+                  class="form-field__select"
+                  aria-required="true"
+                >
+                  <option value="">Bitte wählen...</option>
+                  <option value="12:00">12:00 Uhr</option>
+                  <option value="12:30">12:30 Uhr</option>
+                  <option value="13:00">13:00 Uhr</option>
+                  <option value="13:30">13:30 Uhr</option>
+                  <option value="17:30">17:30 Uhr</option>
+                  <option value="18:00">18:00 Uhr</option>
+                  <option value="18:30">18:30 Uhr</option>
+                  <option value="19:00">19:00 Uhr</option>
+                  <option value="19:30">19:30 Uhr</option>
+                  <option value="20:00">20:00 Uhr</option>
+                  <option value="20:30">20:30 Uhr</option>
+                  <option value="21:00">21:00 Uhr</option>
+                </select>
+              </div>
+
+              <!-- Guests -->
+              <div class="form-field">
+                <label for="res-guests" class="form-field__label">
+                  Anzahl Personen <span class="form-field__required">*</span>
+                </label>
+                <select
+                  id="res-guests"
+                  name="guests"
+                  required
+                  class="form-field__select"
+                  aria-required="true"
+                >
+                  <option value="">Bitte wählen...</option>
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                    <option value={num}>{num} {num === 1 ? 'Person' : 'Personen'}</option>
+                  ))}
+                  <option value="9+">9+ Personen (Gruppe)</option>
+                </select>
+              </div>
+
+              <!-- Special Requests -->
+              <div class="form-field form-field--full">
+                <label for="res-requests" class="form-field__label">
+                  Besondere Wünsche
+                </label>
+                <textarea
+                  id="res-requests"
+                  name="requests"
+                  rows="4"
+                  class="form-field__textarea"
+                  placeholder="z.B. Allergien, besonderer Anlass, Tischpräferenz..."
+                ></textarea>
+              </div>
+
+              <!-- Honeypot -->
+              <div class="form-field--hidden">
+                <label for="res-bot-field">Don't fill this out:</label>
+                <input type="text" name="bot-field" id="res-bot-field" tabindex="-1" />
+              </div>
+
+              <!-- Privacy -->
+              <div class="form-field form-field--checkbox form-field--full">
+                <label class="form-field__checkbox">
+                  <input type="checkbox" name="privacy" required aria-required="true" />
+                  <span class="form-field__checkbox-label">
+                    Ich habe die <a href="/datenschutz" class="form-field__link">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="form-field__required">*</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="reservation-form__actions">
+              <button type="submit" class="btn btn--primary btn--lg">
+                <span>Reservierung anfragen</span>
+                <svg class="btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M2 10L18 10M18 10L11 3M18 10L11 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="reservation-form__status" role="status" aria-live="polite" aria-atomic="true"></div>
+          </form>
+
+          <!-- Info Box -->
+          <div class="info-box glass-card" data-reveal-up>
+            <h3 class="info-box__heading">Wichtige Hinweise</h3>
+
+            <ul class="info-box__list">
+              <li>Reservierungen sind bis zu 3 Monate im Voraus möglich</li>
+              <li>Wir bestätigen Ihre Reservierung innerhalb von 24 Stunden</li>
+              <li>Bitte erscheinen Sie pünktlich – wir halten Ihren Tisch 15 Minuten</li>
+              <li>Für Gruppen ab 9 Personen kontaktieren Sie uns bitte direkt</li>
+              <li>Stornierungen bitte mindestens 24 Stunden im Voraus</li>
+            </ul>
+
+            <p class="info-box__contact">
+              <strong>Fragen?</strong> Rufen Sie uns an:
+              <a href="tel:+4964441123456" class="info-box__link">+49 6441 123456</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--gradient-mesh), var(--color-surface);
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-family: var(--font-family-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-description {
+    font-size: var(--primitive-font-size-xl);
+    line-height: var(--primitive-line-height-relaxed);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Benefits */
+  .benefits-section {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--color-background);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Reservation Section */
+  .reservation-section {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(
+      to bottom,
+      var(--color-surface) 0%,
+      var(--color-background) 100%
+    );
+  }
+
+  .reservation-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Reservation Form */
+  .reservation-form {
+    padding: var(--spacing-xl);
+  }
+
+  .reservation-form__header {
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .reservation-form__title {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-3xl);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .reservation-form__description {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+  }
+
+  .reservation-form__fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .form-field--full {
+    grid-column: 1 / -1;
+  }
+
+  .form-field--hidden {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .form-field__label {
+    font-weight: var(--primitive-font-weight-medium);
+    color: var(--color-text-primary);
+    font-size: var(--primitive-font-size-sm);
+  }
+
+  .form-field__required {
+    color: var(--primitive-error-500);
+  }
+
+  .form-field__input,
+  .form-field__select,
+  .form-field__textarea {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--primitive-radius-lg);
+    background: var(--glass-bg-light-subtle);
+    backdrop-filter: var(--glass-blur-sm);
+    -webkit-backdrop-filter: var(--glass-blur-sm);
+    font-family: inherit;
+    font-size: var(--font-size-body);
+    color: var(--color-text-primary);
+    min-height: 44px;
+    transition: all var(--transition-fast);
+  }
+
+  .form-field__textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-field__input:focus,
+  .form-field__select:focus,
+  .form-field__textarea:focus {
+    outline: none;
+    border-color: var(--color-brand-primary);
+    background: var(--glass-bg-light);
+    box-shadow: 0 0 0 3px rgba(201, 161, 54, 0.1);
+  }
+
+  .form-field--checkbox {
+    align-items: flex-start;
+  }
+
+  .form-field__checkbox {
+    display: flex;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+  }
+
+  .form-field__checkbox input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--color-brand-primary);
+  }
+
+  .form-field__checkbox-label {
+    flex: 1;
+    font-size: var(--primitive-font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+  }
+
+  .form-field__link {
+    color: var(--color-brand-primary);
+    text-decoration: underline;
+  }
+
+  .reservation-form__actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-2xl);
+    border: none;
+    border-radius: var(--primitive-radius-lg);
+    font-family: inherit;
+    font-size: var(--primitive-font-size-lg);
+    font-weight: var(--primitive-font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    min-height: 44px;
+  }
+
+  .btn--primary {
+    background: var(--gradient-brand);
+    color: white;
+    box-shadow: 0 4px 12px rgba(201, 161, 54, 0.3);
+  }
+
+  .btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201, 161, 54, 0.4);
+  }
+
+  .btn__icon {
+    transition: transform var(--transition-fast);
+  }
+
+  .btn:hover .btn__icon {
+    transform: translateX(4px);
+  }
+
+  .reservation-form__status {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    border-radius: var(--primitive-radius-lg);
+    text-align: center;
+    font-weight: var(--primitive-font-weight-medium);
+    display: none;
+  }
+
+  .reservation-form__status.success {
+    display: block;
+    background: rgba(5, 150, 105, 0.1);
+    color: var(--primitive-success-500);
+    border: 2px solid var(--primitive-success-500);
+  }
+
+  .reservation-form__status.error {
+    display: block;
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--primitive-error-500);
+    border: 2px solid var(--primitive-error-500);
+  }
+
+  /* Info Box */
+  .info-box {
+    padding: var(--spacing-xl);
+  }
+
+  .info-box__heading {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-2xl);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .info-box__list {
+    list-style-position: inside;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+  }
+
+  .info-box__list li {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .info-box__contact {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+  }
+
+  .info-box__link {
+    color: var(--color-brand-primary);
+    font-weight: var(--primitive-font-weight-semibold);
+    text-decoration: none;
+  }
+
+  .info-box__link:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    .hero-section,
+    .benefits-section,
+    .reservation-section {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .reservation-form {
+      padding: var(--spacing-lg);
+    }
+
+    .reservation-form__fields {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .btn--lg {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script src="../scripts/scroll-reveal.ts"></script>

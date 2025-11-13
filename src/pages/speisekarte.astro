@@ -1,0 +1,471 @@
+---
+/**
+ * Speisekarte - TC Wetzlar Restaurant
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MenuItem from '../components/MenuItem.astro';
+
+// SEO Data
+const seoData = {
+  title: 'Speisekarte – TC Wetzlar Restaurant',
+  description:
+    'Entdecken Sie unsere Speisekarte mit internationalen und mediterranen Spezialitäten. Frische Zutaten, kreative Gerichte und edle Getränke.',
+  canonical: 'https://tc-wetzlar-restaurant.de/speisekarte',
+  ogImage: '/assets/img/og-menu.jpg',
+};
+
+// Menu Data
+const vorspeisen = [
+  {
+    name: 'Carpaccio vom Rind',
+    description: 'Hauchdünn geschnittenes Rinderfilet mit Rucola, Parmesan und Balsamico-Creme',
+    price: '14,50 €',
+    allergens: ['Milch', 'Senf'],
+  },
+  {
+    name: 'Burrata mit Tomaten',
+    description: 'Cremige Burrata auf Ochsenherztomat mit Basilikum-Pesto und geröstetem Ciabatta',
+    price: '12,90 €',
+    allergens: ['Milch', 'Gluten', 'Nüsse'],
+    vegetarian: true,
+  },
+  {
+    name: 'Jakobsmuscheln',
+    description: 'Gebratene Jakobsmuscheln auf Erbsenpüree mit Pancetta-Chips',
+    price: '16,50 €',
+    allergens: ['Weichtiere', 'Schwefeldioxid'],
+  },
+];
+
+const hauptgerichte = [
+  {
+    name: 'Lammrücken Rosa gebraten',
+    description: 'Zarter Lammrücken mit Rosmarinjus, Gratin Dauphinois und Marktgemüse',
+    price: '32,90 €',
+    allergens: ['Milch', 'Sellerie'],
+  },
+  {
+    name: 'Atlantik Steinbutt',
+    description: 'Steinbuttfilet auf Safranrisotto mit Zitrus-Butter-Sauce',
+    price: '34,50 €',
+    allergens: ['Fisch', 'Milch', 'Schwefeldioxid'],
+  },
+  {
+    name: 'Dry Aged Rumpsteak',
+    description: '300g Rumpsteak vom Wagyū-Rind mit Pfeffersauce, Pommes Frites und Salat',
+    price: '38,90 €',
+    allergens: ['Milch', 'Sellerie'],
+  },
+  {
+    name: 'Risotto mit Trüffel',
+    description: 'Cremiges Risotto mit schwarzem Trüffel, Parmesan und gerösteten Pinienkernen',
+    price: '24,50 €',
+    allergens: ['Milch', 'Nüsse'],
+    vegetarian: true,
+  },
+  {
+    name: 'Vegane Buddha Bowl',
+    description: 'Quinoa, geröstetes Gemüse, Avocado, Kichererbsen und Tahini-Dressing',
+    price: '18,90 €',
+    allergens: ['Sesam'],
+    vegan: true,
+  },
+];
+
+const desserts = [
+  {
+    name: 'Crème Brûlée',
+    description: 'Klassische Crème Brûlée mit karamellisierter Zuckerkruste und Vanilleeis',
+    price: '8,50 €',
+    allergens: ['Milch', 'Eier'],
+  },
+  {
+    name: 'Schokoladen-Soufflé',
+    description: 'Warmes Schokoladen-Soufflé mit flüssigem Kern und Himbeercoulis',
+    price: '9,90 €',
+    allergens: ['Milch', 'Eier', 'Gluten'],
+  },
+  {
+    name: 'Panna Cotta',
+    description: 'Vanille-Panna Cotta mit Beeren-Kompott und Minze',
+    price: '7,90 €',
+    allergens: ['Milch'],
+    vegetarian: true,
+  },
+];
+
+const getraenke = [
+  {
+    name: 'Hauswein Rot',
+    description: 'Montepulciano d\'Abruzzo, Italien – vollmundig mit Noten von dunklen Beeren',
+    price: '6,50 € / 0,2l',
+  },
+  {
+    name: 'Hauswein Weiß',
+    description: 'Grauburgunder, Pfalz – frisch und fruchtig mit feiner Säure',
+    price: '6,50 € / 0,2l',
+  },
+  {
+    name: 'Champagner Brut',
+    description: 'Moët & Chandon Imperial Brut – elegant mit feiner Perlage',
+    price: '89,00 € / Flasche',
+  },
+];
+---
+
+<BaseLayout {...seoData}>
+  <Header />
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" data-reveal-up>
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Unsere Speisekarte</h1>
+          <p class="hero-description">
+            Genießen Sie internationale und mediterrane Spezialitäten, zubereitet mit
+            frischen, saisonalen Zutaten höchster Qualität.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vorspeisen -->
+    <section class="menu-section" aria-labelledby="vorspeisen-heading">
+      <div class="container">
+        <h2 id="vorspeisen-heading" class="menu-section__heading" data-reveal-up>
+          Vorspeisen
+        </h2>
+
+        <div class="menu-section__items" data-reveal-stagger>
+          {vorspeisen.map((item) => (
+            <MenuItem
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              category="vorspeise"
+              allergens={item.allergens}
+              vegetarian={item.vegetarian}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Hauptgerichte -->
+    <section class="menu-section menu-section--alt" aria-labelledby="hauptgerichte-heading">
+      <div class="container">
+        <h2 id="hauptgerichte-heading" class="menu-section__heading" data-reveal-up>
+          Hauptgerichte
+        </h2>
+
+        <div class="menu-section__items" data-reveal-stagger>
+          {hauptgerichte.map((item) => (
+            <MenuItem
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              category="hauptgang"
+              allergens={item.allergens}
+              vegetarian={item.vegetarian}
+              vegan={item.vegan}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Desserts -->
+    <section class="menu-section" aria-labelledby="desserts-heading">
+      <div class="container">
+        <h2 id="desserts-heading" class="menu-section__heading" data-reveal-up>
+          Desserts
+        </h2>
+
+        <div class="menu-section__items" data-reveal-stagger>
+          {desserts.map((item) => (
+            <MenuItem
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              category="dessert"
+              allergens={item.allergens}
+              vegetarian={item.vegetarian}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Getränke -->
+    <section class="menu-section menu-section--alt" aria-labelledby="getraenke-heading">
+      <div class="container">
+        <h2 id="getraenke-heading" class="menu-section__heading" data-reveal-up>
+          Getränkeauswahl
+        </h2>
+
+        <div class="menu-section__items" data-reveal-stagger>
+          {getraenke.map((item) => (
+            <MenuItem
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              category="getraenk"
+            />
+          ))}
+        </div>
+
+        <p class="menu-section__note" data-reveal-up>
+          Fragen Sie unser Personal nach unserer vollständigen Weinkarte mit über 100
+          erlesenen Weinen aus aller Welt.
+        </p>
+      </div>
+    </section>
+
+    <!-- Allergen Info -->
+    <section class="allergen-info" aria-labelledby="allergen-heading">
+      <div class="container">
+        <div class="allergen-info__content glass-card" data-reveal-up>
+          <h2 id="allergen-heading" class="allergen-info__heading">
+            Allergen-Informationen
+          </h2>
+          <p class="allergen-info__text">
+            Alle Gerichte können Spuren von Allergenen enthalten. Bitte informieren Sie unser
+            Personal über Ihre Allergien oder Unverträglichkeiten – wir passen Ihre Gerichte
+            gerne an.
+          </p>
+          <p class="allergen-info__text">
+            Legende: 🌱 Vegan | 🥬 Vegetarisch
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-box glass-card" data-reveal-up>
+          <h2 id="cta-heading" class="cta-box__heading">
+            Reservieren Sie Ihren Tisch
+          </h2>
+          <p class="cta-box__text">
+            Erleben Sie unsere Küche in unserem eleganten Restaurant.
+            Wir freuen uns auf Ihren Besuch!
+          </p>
+          <div class="cta-box__actions">
+            <a href="/reservierung" class="btn btn--primary btn--lg">
+              Jetzt reservieren
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--gradient-mesh), var(--color-surface);
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-family: var(--font-family-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-description {
+    font-size: var(--primitive-font-size-xl);
+    line-height: var(--primitive-line-height-relaxed);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Menu Sections */
+  .menu-section {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--color-background);
+  }
+
+  .menu-section--alt {
+    background: linear-gradient(
+      to bottom,
+      var(--color-surface) 0%,
+      var(--color-background) 100%
+    );
+  }
+
+  .menu-section__heading {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-4xl);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    position: relative;
+  }
+
+  .menu-section__heading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-brand);
+    margin: var(--spacing-md) auto 0;
+    border-radius: var(--primitive-radius-full);
+  }
+
+  .menu-section__items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .menu-section__note {
+    text-align: center;
+    font-style: italic;
+    color: var(--color-text-secondary);
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background: var(--glass-bg-light-subtle);
+    border-radius: var(--primitive-radius-lg);
+  }
+
+  /* Allergen Info */
+  .allergen-info {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--color-surface);
+  }
+
+  .allergen-info__content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .allergen-info__heading {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-2xl);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .allergen-info__text {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .allergen-info__text:last-child {
+    margin-bottom: 0;
+    font-weight: var(--primitive-font-weight-semibold);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--color-background);
+  }
+
+  .cta-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl);
+    text-align: center;
+  }
+
+  .cta-box__heading {
+    font-family: var(--font-family-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .cta-box__text {
+    font-size: var(--primitive-font-size-lg);
+    line-height: var(--primitive-line-height-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .cta-box__actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-2xl);
+    border: none;
+    border-radius: var(--primitive-radius-lg);
+    font-family: inherit;
+    font-size: var(--primitive-font-size-lg);
+    font-weight: var(--primitive-font-weight-semibold);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    min-height: 44px;
+  }
+
+  .btn--primary {
+    background: var(--gradient-brand);
+    color: white;
+    box-shadow: 0 4px 12px rgba(201, 161, 54, 0.3);
+  }
+
+  .btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201, 161, 54, 0.4);
+  }
+
+  .btn--lg {
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-size: var(--primitive-font-size-lg);
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    .hero-section {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .menu-section {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .menu-section__heading {
+      font-size: var(--primitive-font-size-3xl);
+    }
+
+    .cta-box {
+      padding: var(--spacing-xl);
+    }
+
+    .btn--lg {
+      width: 100%;
+    }
+  }
+</style>
+
+<script src="../scripts/scroll-reveal.ts"></script>

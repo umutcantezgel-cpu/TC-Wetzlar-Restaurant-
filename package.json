@@ -29,24 +29,25 @@
     "postbuild": "npm run sri:gen"
   },
   "dependencies": {
-    "astro": "^4.16.0",
+    "@astrojs/sitemap": "^3.6.0",
     "@astrojs/tailwind": "^5.1.0",
-    "tailwindcss": "^3.4.14",
-    "sharp": "^0.33.5"
+    "astro": "^4.16.0",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.14"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.14.0",
     "@types/node": "^22.7.9",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.11.0",
-    "@lhci/cli": "^0.14.0",
     "axe-core": "^4.10.0",
     "eslint": "^9.13.0",
     "eslint-plugin-astro": "^1.2.4",
     "pa11y": "^8.0.0",
+    "playwright": "^1.48.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.6.3",
-    "playwright": "^1.48.0"
+    "typescript": "^5.6.3"
   },
   "engines": {
     "node": ">=18.0.0",

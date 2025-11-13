@@ -1,0 +1,194 @@
+---
+/**
+ * Impressum - TC Wetzlar Restaurant
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const seoData = {
+  title: 'Impressum – TC Wetzlar Restaurant',
+  description: 'Impressum und rechtliche Informationen des TC Wetzlar Restaurants.',
+  canonical: 'https://tc-wetzlar-restaurant.de/impressum',
+  robots: 'noindex, follow',
+};
+---
+
+<BaseLayout {...seoData}>
+  <Header />
+
+  <main id="main-content">
+    <section class="legal-section">
+      <div class="container">
+        <div class="legal-content glass-card">
+          <h1 class="legal-title">Impressum</h1>
+
+          <section class="legal-block">
+            <h2>Angaben gemäß § 5 TMG</h2>
+            <address>
+              <strong>TC Wetzlar Restaurant</strong><br />
+              Musterstraße 123<br />
+              35576 Wetzlar<br />
+              Deutschland
+            </address>
+          </section>
+
+          <section class="legal-block">
+            <h2>Kontakt</h2>
+            <p>
+              Telefon: <a href="tel:+4964441123456">+49 6441 123456</a><br />
+              E-Mail: <a href="mailto:info@tc-wetzlar-restaurant.de">info@tc-wetzlar-restaurant.de</a>
+            </p>
+          </section>
+
+          <section class="legal-block">
+            <h2>Vertretungsberechtigte Personen</h2>
+            <p>
+              Geschäftsführer: Max Mustermann
+            </p>
+          </section>
+
+          <section class="legal-block">
+            <h2>Umsatzsteuer-ID</h2>
+            <p>
+              Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br />
+              DE123456789
+            </p>
+          </section>
+
+          <section class="legal-block">
+            <h2>Zuständige Aufsichtsbehörde</h2>
+            <p>
+              Ordnungsamt Stadt Wetzlar<br />
+              Ernst-Leitz-Straße 30<br />
+              35578 Wetzlar
+            </p>
+          </section>
+
+          <section class="legal-block">
+            <h2>Streitschlichtung</h2>
+            <p>
+              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+              <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">
+                https://ec.europa.eu/consumers/odr
+              </a>
+            </p>
+            <p>
+              Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+              Verbraucherschlichtungsstelle teilzunehmen.
+            </p>
+          </section>
+
+          <section class="legal-block">
+            <h2>Haftung für Inhalte</h2>
+            <p>
+              Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen
+              Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir
+              als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde
+              Informationen zu überwachen oder nach Umständen zu forschen, die auf eine
+              rechtswidrige Tätigkeit hinweisen.
+            </p>
+          </section>
+
+          <section class="legal-block">
+            <h2>Haftung für Links</h2>
+            <p>
+              Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir
+              keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine
+              Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige
+              Anbieter oder Betreiber der Seiten verantwortlich.
+            </p>
+          </section>
+
+          <section class="legal-block">
+            <h2>Urheberrecht</h2>
+            <p>
+              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
+              unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
+              Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes
+              bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+            </p>
+          </section>
+
+          <p class="legal-update">
+            <small>Stand: November 2025</small>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--gradient-mesh), var(--color-surface);
+    min-height: 60vh;
+  }
+
+  .legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+  }
+
+  .legal-title {
+    font-family: var(--font-family-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-brand-primary);
+  }
+
+  .legal-block {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .legal-block h2 {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-xl);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .legal-block p,
+  .legal-block address {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .legal-block address {
+    font-style: normal;
+  }
+
+  .legal-block a {
+    color: var(--color-brand-primary);
+    text-decoration: none;
+  }
+
+  .legal-block a:hover {
+    text-decoration: underline;
+  }
+
+  .legal-update {
+    text-align: center;
+    color: var(--color-text-tertiary);
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--glass-border-light);
+  }
+
+  @media (max-width: 767px) {
+    .legal-section {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .legal-content {
+      padding: var(--spacing-lg);
+    }
+  }
+</style>

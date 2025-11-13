@@ -1,0 +1,263 @@
+---
+/**
+ * MenuItem Component
+ * Premium menu item with glassmorphism effect and allergen information
+ * WCAG 2.2 AA Compliant
+ */
+
+export interface Props {
+  name: string;
+  description: string;
+  price: string;
+  category?: 'vorspeise' | 'hauptgang' | 'dessert' | 'getraenk';
+  allergens?: string[];
+  vegetarian?: boolean;
+  vegan?: boolean;
+  image?: string;
+}
+
+const {
+  name,
+  description,
+  price,
+  category = 'hauptgang',
+  allergens,
+  vegetarian = false,
+  vegan = false,
+  image,
+} = Astro.props;
+
+// Category colors
+const categoryColors = {
+  vorspeise: 'var(--primitive-gold-300)',
+  hauptgang: 'var(--primitive-gold-500)',
+  dessert: 'var(--primitive-gold-700)',
+  getraenk: 'var(--primitive-gold-200)',
+};
+
+const categoryColor = categoryColors[category];
+---
+
+<article
+  class="menu-item glass-card"
+  data-reveal-up
+  style={`--category-color: ${categoryColor}`}
+>
+  {image && (
+    <div class="menu-item__image-wrapper">
+      <img
+        src={image}
+        alt={name}
+        class="menu-item__image"
+        loading="lazy"
+        width="300"
+        height="200"
+      />
+    </div>
+  )}
+
+  <div class="menu-item__content">
+    <div class="menu-item__header">
+      <div class="menu-item__title-wrapper">
+        <h3 class="menu-item__name">{name}</h3>
+
+        {(vegetarian || vegan) && (
+          <div class="menu-item__badges">
+            {vegan && (
+              <span class="menu-item__badge menu-item__badge--vegan" aria-label="Vegan">
+                🌱
+              </span>
+            )}
+            {vegetarian && !vegan && (
+              <span class="menu-item__badge menu-item__badge--vegetarian" aria-label="Vegetarisch">
+                🥬
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+
+      <span class="menu-item__price">{price}</span>
+    </div>
+
+    <p class="menu-item__description">{description}</p>
+
+    {allergens && allergens.length > 0 && (
+      <div class="menu-item__allergens">
+        <span class="menu-item__allergens-label">Allergene:</span>
+        <span class="menu-item__allergens-list">
+          {allergens.join(', ')}
+        </span>
+      </div>
+    )}
+  </div>
+
+  <!-- Category indicator bar -->
+  <div class="menu-item__category-bar" aria-hidden="true"></div>
+</article>
+
+<style>
+  .menu-item {
+    position: relative;
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+  }
+
+  .menu-item:hover {
+    transform: translateX(4px);
+    box-shadow: var(--glass-shadow-lg);
+  }
+
+  /* Category color bar */
+  .menu-item__category-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--category-color);
+    transition: width var(--transition-fast);
+  }
+
+  .menu-item:hover .menu-item__category-bar {
+    width: 6px;
+  }
+
+  /* Image */
+  .menu-item__image-wrapper {
+    flex-shrink: 0;
+    width: 140px;
+    height: 140px;
+    border-radius: var(--primitive-radius-xl);
+    overflow: hidden;
+    box-shadow: var(--primitive-shadow-md);
+  }
+
+  .menu-item__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .menu-item:hover .menu-item__image {
+    transform: scale(1.08);
+  }
+
+  /* Content */
+  .menu-item__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .menu-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  .menu-item__title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .menu-item__name {
+    font-family: var(--font-family-display);
+    font-size: var(--primitive-font-size-xl);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--primitive-line-height-tight);
+  }
+
+  .menu-item__badges {
+    display: flex;
+    gap: var(--spacing-xs);
+  }
+
+  .menu-item__badge {
+    font-size: var(--primitive-font-size-lg);
+    line-height: 1;
+  }
+
+  .menu-item__price {
+    font-size: var(--primitive-font-size-xl);
+    font-weight: var(--primitive-font-weight-bold);
+    color: var(--color-brand-primary);
+    white-space: nowrap;
+    font-family: var(--font-family-display);
+  }
+
+  .menu-item__description {
+    color: var(--color-text-secondary);
+    line-height: var(--primitive-line-height-relaxed);
+    margin: 0;
+  }
+
+  /* Allergens */
+  .menu-item__allergens {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+    font-size: var(--primitive-font-size-sm);
+    color: var(--color-text-tertiary);
+    padding-top: var(--spacing-xs);
+    border-top: 1px solid var(--glass-border-light);
+  }
+
+  .menu-item__allergens-label {
+    font-weight: var(--primitive-font-weight-semibold);
+  }
+
+  .menu-item__allergens-list {
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    .menu-item {
+      flex-direction: column;
+    }
+
+    .menu-item__image-wrapper {
+      width: 100%;
+      height: 200px;
+    }
+
+    .menu-item__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-xs);
+    }
+
+    .menu-item__price {
+      font-size: var(--primitive-font-size-2xl);
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .menu-item {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      border: 1px solid #000;
+      padding: 12px;
+    }
+
+    .menu-item__image-wrapper {
+      display: none;
+    }
+
+    .menu-item__category-bar {
+      display: none;
+    }
+  }
+</style>
